@@ -1,0 +1,9 @@
+<h1>Test Page</h1>
+
+<ul>
+  <% @events.each do |event| %>
+  <li>
+    <%= "#{event.year} #{event.month} #{event.day} - #{event.info}" %>
+  </li>
+  <% end %>
+</ul>
