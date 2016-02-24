@@ -8,7 +8,7 @@
 
 # puts 'EMPTY THE MONGODB DATABASE'
 # ::Mongoid::Sessions.default.drop
-years = (1950..2015).to_a
+years = (1900..2015).to_a
 years.each do |year|
   File.open("./wiki_data/#{year}_ready.txt", "r").each do |line|
     a = line.split(", ")
