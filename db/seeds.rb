@@ -8,32 +8,34 @@
 
 # puts 'EMPTY THE MONGODB DATABASE'
 # ::Mongoid::Sessions.default.drop
+years = (1950..2015).to_a
+years.each do |year|
+  File.open("./wiki_data/#{year}_ready.txt", "r").each do |line|
+    a = line.split(", ")
+    check = 3
+    info = ""
+    while (a[check] != "true") && (a[check] != "false")
+      info += " "
+      info += a[check]
+      check += 1
+    end
+    if a[check] == "true"
+      a[check] = true
+    elsif a[check] == "false"
+      a[check] = false
+    end
+    if a[check+1] == "true"
+      a[check+1] = true
+    elsif a[check+1] == "false"
+      a[check+1] = false
+    end
 
-File.open("./2014_ready.txt", "r").each do |line|
-  a = line.split(", ")
-  check = 3
-  info = ""
-  while (a[check] != "true") && (a[check] != "false")
-    info += " "
-    info += a[check]
-    check += 1
-  end
-  if a[check] == "true"
-    a[check] = true
-  elsif a[check] == "false"
-    a[check] = false
-  end
-  if a[check+1] == "true"
-    a[check+1] = true
-  elsif a[check+1] == "false"
-    a[check+1] = false
-  end
+    a[check+3].slice!("\n")
 
-  a[check+3].slice!("\n")
-
-  event = Event.create! :year => a[0].to_i, :month => a[1], :day => a[2], :info => info, :on_going => a[check], :is_range => a[check+1], :end_month => a[check+2], :end_day => a[check+3]
-  puts "New event created: " << event.info
-  event.save
+    event = Event.create! :year => a[0].to_i, :month => a[1], :day => a[2], :info => info, :on_going => a[check], :is_range => a[check+1], :end_month => a[check+2], :end_day => a[check+3]
+    puts "New event created: " << event.info
+    event.save
+  end
 end
 
 
