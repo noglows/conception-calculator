@@ -1,0 +1,9 @@
+<h1>Test Page</h1>
+
+<ul>
+  <% @songs.each do |song| %>
+  <li>
+    <%= "#{song.year} #{song.month} #{song.day} - #{song.title}, #{song.artist}" %>
+  </li>
+  <% end %>
+</ul>
