@@ -1,9 +1,11 @@
-<h1>All Songs</h1>
+<div class="container">
+  <h1>All Songs</h1>
 
-<ul>
-  <% @songs.each do |song| %>
-  <li>
-    <%= "#{song.year} #{song.month} #{song.day} - #{song.title}, #{song.artist}" %>
-  </li>
-  <% end %>
-</ul>
+  <ul>
+    <% @songs.each do |song| %>
+    <li>
+      <%= "#{song.year} #{song.month} #{song.day} - #{song.title}, #{song.artist}" %>
+    </li>
+    <% end %>
+  </ul>
+</div>

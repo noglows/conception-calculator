@@ -1,9 +1,11 @@
-<h1>All Movies</h1>
+<div class="container">
+  <h1>All Movies</h1>
 
-<ul>
-  <% @movies.each do |movie| %>
-  <li>
-    <%= "#{movie.year} #{movie.month} #{movie.day} - #{movie.title}, #{movie.earned}" %>
-  </li>
-  <% end %>
-</ul>
+  <ul>
+    <% @movies.each do |movie| %>
+    <li>
+      <%= "#{movie.year} #{movie.month} #{movie.day} - #{movie.title}, #{movie.earned}" %>
+    </li>
+    <% end %>
+  </ul>
+</div>
