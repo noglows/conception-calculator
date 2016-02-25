@@ -6,4 +6,8 @@ class WelcomeController < ApplicationController
   def songs
     @songs = Song.all
   end
+
+  def movies
+    @movies = Movie.all
+  end
 end

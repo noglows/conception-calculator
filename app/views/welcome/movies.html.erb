@@ -1,0 +1,9 @@
+<h1>Test Page</h1>
+
+<ul>
+  <% @movies.each do |movie| %>
+  <li>
+    <%= "#{movie.year} #{movie.month} #{movie.day} - #{movie.title}, #{movie.earned}" %>
+  </li>
+  <% end %>
+</ul>
