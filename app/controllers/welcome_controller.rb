@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @events = Event.where(year: 1991)
+    @events = Event.all
   end
 
   def songs
