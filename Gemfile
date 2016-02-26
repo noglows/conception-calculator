@@ -40,6 +40,7 @@ gem 'omniauth-twitter'
 gem 'mongoid', '~> 5.1.0'
 gem 'bootstrap-sass'
 gem 'skeleton-rails', github: 'helios-technologies/skeleton-rails'
+gem 'font-awesome-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
