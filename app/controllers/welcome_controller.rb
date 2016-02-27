@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
   end
 
   def events
-    @events = Event.all
+    @events = Event.where(year: 2001, month: "September", day:11)
   end
 
   def songs

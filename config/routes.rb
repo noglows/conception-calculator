@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get '/events' => 'welcome#events'
 
   get '/day' => 'api#events_for_day'
-  # The priority is based upon order of creation: first created -> highest priority.
+  get '/song' => 'api#songs_for_day'
+  get '/movie' => 'api#movie_for_day'
+   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
