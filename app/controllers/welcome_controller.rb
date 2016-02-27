@@ -3,7 +3,8 @@ class WelcomeController < ApplicationController
   end
 
   def events
-    @events = Event.where(year: 2001, month: "September", day:11)
+    @events = Event.where(:year.gte => 2001)
+    #:founded.gte => "1980-1-1"
   end
 
   def songs

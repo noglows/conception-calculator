@@ -4,16 +4,7 @@ class ApiController < ApplicationController
     respond_to do |format|
       format.json do
         start_date = params[:start]
-        date = start_date.split("/")
-        months = {"1" => "January", "2" => "February", "3" => "March", "4" => "April", "5" => "May", "6" => "June", "7" => "July", "8" => "August"}
-        months["9"] = "September"
-        months["10"] = "October"
-        months["11"] = "November"
-        months["12"] = "December"
-
-        month = months[date[0]]
-        day = date[1].to_i
-        year = date[2].to_i
+        month, day, year = ApiController.helpers.date_splitter(start_date)
         events = Event.where(year: year, month: month, day: day)
         render json: [events]
       end
@@ -24,16 +15,7 @@ class ApiController < ApplicationController
     respond_to do |format|
       format.json do
         start_date = params[:start]
-        date = start_date.split("/")
-        months = {"1" => "January", "2" => "February", "3" => "March", "4" => "April", "5" => "May", "6" => "June", "7" => "July", "8" => "August"}
-        months["9"] = "September"
-        months["10"] = "October"
-        months["11"] = "November"
-        months["12"] = "December"
-
-        month = months[date[0]]
-        day = date[1].to_i
-        year = date[2].to_i
+        month, day, year = ApiController.helpers.date_splitter(start_date)
         events = Song.where(year: year, month: month, day: day)
         render json: [events]
       end
@@ -44,19 +26,26 @@ class ApiController < ApplicationController
     respond_to do |format|
       format.json do
         start_date = params[:start]
-        date = start_date.split("/")
-        months = {"1" => "January", "2" => "February", "3" => "March", "4" => "April", "5" => "May", "6" => "June", "7" => "July", "8" => "August"}
-        months["9"] = "September"
-        months["10"] = "October"
-        months["11"] = "November"
-        months["12"] = "December"
-
-        month = months[date[0]]
-        day = date[1].to_i
-        year = date[2].to_i
+        month, day, year = ApiController.helpers.date_splitter(start_date)
         events = Movie.where(year: year, month: month, day: day)
         render json: [events]
       end
     end
   end
+
+  def events_in_range
+    respond_to do |format|
+      format.json do
+        start_date = params[:start]
+        end_date = params[:end]
+        start_month, start_day, start_year = ApiController.helpers.date_splitter(start_date)
+        end_month, end_day, end_year = ApiController.helpers.date_splitter(end_date)
+        events = Event.where(:year.gte => start_year, :year.lte => end_year)
+        render json: [events]
+      end
+    end
+  end
+
+  #@events = Event.where(:year.gte => 2001)
+
 end
