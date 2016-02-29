@@ -100,7 +100,33 @@
 #   song.save
 # end
 
-
+# File.open("./wiki_data/all_movies.txt", "r").each do |line|
+#   a = line.split(", ")
+#   year = a[0].to_i
+#   date = a[1].split(" ")
+#   if a[1] == "nil"
+#     month = @prev_month
+#     day = @prev_day
+#   else
+#     month = date[0]
+#     day = date[1].to_i
+#     @prev_month = month
+#     @prev_day = day
+#   end
+#   title = a[2]
+#   earned = a[5]
+#   earned.slice!("$")
+#   earned.gsub!(",", "")
+#   earned = earned.to_i
+#
+#   months = {"January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8, "September" => 9, "October" => 10 }
+#   months["November"] = 11
+#   months["December"] = 12
+#
+#   movie = Movie.create! :year => year.to_i, :month => months[month].to_i, :day => day.to_i, :title => title, :earned => earned
+#   puts "Created movie " << movie.title
+#   movie.save
+# end
 
 File.open("./wiki_data/movies_formatted.txt", "r").each do |line|
   a = line.split(", ")

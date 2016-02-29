@@ -2,6 +2,16 @@ window.requestAnimationFrame(function () {
   $("#events").empty();
   $("#songs").empty();
   $("#movies").empty();
+  $("#conceptionRange").empty();
+  var checked = true;
+  $("#moreOptions").hide();
+  $("#checkUnusual").click(function() {
+    $("#moreOptions").toggle();
+  });
+
+  var atLeastOneIsChecked = $('#checkArray:checkbox:checked').length > 0;
+  console.log(atLeastOneIsChecked);
+//there should be no space between identifier and selector
 
   $("#birthdayInputButton").click(function() {
     var output = $("#birthdayInput").val();
@@ -10,6 +20,7 @@ window.requestAnimationFrame(function () {
     $("#events").empty();
     $("#songs").empty();
     $("#movies").empty();
+    $("#conceptionRange").empty();
     $.ajax({
       method: "GET",
       url: "/conception_range",
