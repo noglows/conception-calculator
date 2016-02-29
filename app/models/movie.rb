@@ -4,5 +4,4 @@ class Movie
   field :month, type: Integer
   field :day, type: Integer
   field :title, type: String
-  field :earned, type: Integer
 end
