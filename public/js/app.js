@@ -22,6 +22,7 @@ window.requestAnimationFrame(function () {
       start_date = start_date[1] + "/" + start_date[2] + "/" + start_date[0];
       end_date = end_date.split("-");
       end_date = end_date[1] + "/" + end_date[2] + "/" + end_date[0];
+      $("#conceptionRange").append("You were likely conceived between " + start_date + " and " + end_date + ".");
       $.ajax({
         method: "GET",
         url: "/event_range",
