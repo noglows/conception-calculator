@@ -34,7 +34,11 @@
 #       a[check+3].slice!("\n")
 #     end
 #
-#     event = Event.create! :year => a[0].to_i, :month => a[1], :day => a[2], :info => info, :on_going => a[check], :is_range => a[check+1], :end_month => a[check+2], :end_day => a[check+3]
+#     months = {"January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8, "September" => 9, "October" => 10 }
+#     months["November"] = 11
+#     months["December"] = 12
+#
+#     event = Event.create! :year => a[0].to_i, :month => months[a[1]].to_i, :day => a[2].to_i, :info => info, :on_going => a[check], :is_range => a[check+1], :end_month => a[check+2], :end_day => a[check+3]
 #     puts "New event created: " << event.info
 #     event.save
 #   end
@@ -64,16 +68,17 @@
 #     a[check+3].slice!("\n")
 #   end
 #
-#   event = Event.create! :year => a[0].to_i, :month => a[1], :day => a[2], :info => info, :on_going => a[check], :is_range => a[check+1], :end_month => a[check+2], :end_day => a[check+3]
+#   months = {"January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8, "September" => 9, "October" => 10 }
+#   months["November"] = 11
+#   months["December"] = 12
+#
+#   event = Event.create! :year => a[0].to_i, :month => months[a[1]].to_i, :day => a[2].to_i, :info => info, :on_going => a[check], :is_range => a[check+1], :end_month => a[check+2], :end_day => a[check+3]
 #   puts "Created error event " << event.info
 #   event.save
 # end
-#music_years = (1940..2016).to_a
-# years.each do |year|
-#   File.open("./wiki_data/#{year}_ready.txt", "r").each do |line|
+
 
 # music_csv = CSV.read("./wiki_data/all_music_data.csv")
-# # Create a new market object for each row in the CSV
 # music_csv.each do |year, date, title, artist|
 #   a = date.split(" ")
 #   month = a[0]
@@ -88,7 +93,10 @@
 #   else
 #     @prev_artist = artist
 #   end
-#   song = Song.create! :year => year.to_i, :month => month, :day => day, :title => title, :artist => artist
+#   months = {"January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8, "September" => 9, "October" => 10 }
+#   months["November"] = 11
+#   months["December"] = 12
+#   song = Song.create! :year => year.to_i, :month => months[month].to_i, :day => day.to_i, :title => title, :artist => artist
 #   song.save
 # end
 
@@ -111,9 +119,11 @@ File.open("./wiki_data/all_movies.txt", "r").each do |line|
   earned.gsub!(",", "")
   earned = earned.to_i
 
-  movie = Movie.create! :year => year, :month => month, :day => day, :title => title, :earned => earned
+  months = {"January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8, "September" => 9, "October" => 10 }
+  months["November"] = 11
+  months["December"] = 12
+
+  movie = Movie.create! :year => year.to_i, :month => months[month].to_i, :day => day.to_i, :title => title, :earned => earned
   puts "Created movie " << movie.title
   movie.save
 end
-
-#end
