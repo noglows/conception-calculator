@@ -45,6 +45,7 @@ class ApiController < ApplicationController
   def movies_in_range
     respond_to do |format|
       format.json do
+        binding.pry
         movies = ApiController.helpers.pull_events_in_range(Movie, params[:start], params[:end])
         render json: movies
       end

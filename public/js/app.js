@@ -22,13 +22,30 @@ window.requestAnimationFrame(function () {
         data: "start=" + start_date + "&end=" + end_date,
       })
       .done(function(data) {
-        console.log(data);
         for (i = 0; i < data.length; i++) {
           $("#events").append("<p>" + data[i].info + "</p>");
         }
-          // console.log(data[0].info);
-          // console.log($("#events").html())
-          // $("#events").html("<p>" + data[0].info + "</p>");
+      });
+      $.ajax({
+        method: "GET",
+        url: "/song_range",
+        data: "start=" + start_date + "&end=" + end_date,
+      })
+      .done(function(data) {
+        for (i = 0; i < data.length; i++) {
+          $("#songs").append("<p>" + data[i].title + " by " + data[i].artist + "</p>");
+        }
+      });
+      $.ajax({
+        method: "GET",
+        url: "/movie_range",
+        data: "start=" + start_date + "&end=" + end_date,
+      })
+      .done(function(data) {
+        console.log(data);
+        for (i = 0; i < data.length; i++) {
+          $("#movies").append("<p>" + data[i].title + "</p>");
+        }
       });
     });
   });
