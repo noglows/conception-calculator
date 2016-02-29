@@ -1,9 +1,15 @@
 window.requestAnimationFrame(function () {
+  $("#events").empty();
+  $("#songs").empty();
+  $("#movies").empty();
 
   $("#birthdayInputButton").click(function() {
     var output = $("#birthdayInput").val();
     var split_output = output.split("-");
     output_as_date = split_output[1] + "/" + split_output[2] + "/" + split_output[0];
+    $("#events").empty();
+    $("#songs").empty();
+    $("#movies").empty();
     $.ajax({
       method: "GET",
       url: "/conception_range",
@@ -42,7 +48,6 @@ window.requestAnimationFrame(function () {
         data: "start=" + start_date + "&end=" + end_date,
       })
       .done(function(data) {
-        console.log(data);
         for (i = 0; i < data.length; i++) {
           $("#movies").append("<p>" + data[i].title + "</p>");
         }
