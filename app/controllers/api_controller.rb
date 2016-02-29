@@ -40,7 +40,16 @@ class ApiController < ApplicationController
         end_date = params[:end]
         start_month, start_day, start_year = ApiController.helpers.date_splitter(start_date)
         end_month, end_day, end_year = ApiController.helpers.date_splitter(end_date)
-        events = Event.where(:year.gte => start_year, :year.lte => end_year)
+
+        start_date = Date.new(start_year, start_month, start_day)
+        end_date = Date.new(end_year, end_month, end_day)
+        date_range = ApiController.helpers.create_range(start_date, end_date)
+        events = []
+        date_range.each do |date|
+          date_comp = date.split("-")
+          events.push(Event.where(year: date_comp[0].to_i, month: date_comp[1].to_i, day: date_comp[2].to_i))
+        end
+        events.flatten!
         render json: [events]
       end
     end
