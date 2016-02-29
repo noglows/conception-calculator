@@ -16,8 +16,8 @@ class ApiController < ApplicationController
       format.json do
         start_date = params[:start]
         month, day, year = ApiController.helpers.date_splitter(start_date)
-        events = Song.where(year: year, month: month, day: day)
-        render json: [events]
+        songs = Song.where(year: year, month: month, day: day)
+        render json: [songs]
       end
     end
   end
@@ -27,8 +27,8 @@ class ApiController < ApplicationController
       format.json do
         start_date = params[:start]
         month, day, year = ApiController.helpers.date_splitter(start_date)
-        events = Movie.where(year: year, month: month, day: day)
-        render json: [events]
+        movies = Movie.where(year: year, month: month, day: day)
+        render json: [movies]
       end
     end
   end
@@ -36,21 +36,8 @@ class ApiController < ApplicationController
   def events_in_range
     respond_to do |format|
       format.json do
-        start_date = params[:start]
-        end_date = params[:end]
-        start_month, start_day, start_year = ApiController.helpers.date_splitter(start_date)
-        end_month, end_day, end_year = ApiController.helpers.date_splitter(end_date)
-
-        start_date = Date.new(start_year, start_month, start_day)
-        end_date = Date.new(end_year, end_month, end_day)
-        date_range = ApiController.helpers.create_range(start_date, end_date)
-        events = []
-        date_range.each do |date|
-          date_comp = date.split("-")
-          events.push(Event.where(year: date_comp[0].to_i, month: date_comp[1].to_i, day: date_comp[2].to_i))
-        end
-        events.flatten!
-        render json: [events]
+        events = ApiController.helpers.pull_events_in_range(Event, params[:start], params[:end])
+        render json: events
       end
     end
   end
@@ -58,21 +45,8 @@ class ApiController < ApplicationController
   def movies_in_range
     respond_to do |format|
       format.json do
-        start_date = params[:start]
-        end_date = params[:end]
-        start_month, start_day, start_year = ApiController.helpers.date_splitter(start_date)
-        end_month, end_day, end_year = ApiController.helpers.date_splitter(end_date)
-
-        start_date = Date.new(start_year, start_month, start_day)
-        end_date = Date.new(end_year, end_month, end_day)
-        date_range = ApiController.helpers.create_range(start_date, end_date)
-        movies = []
-        date_range.each do |date|
-          date_comp = date.split("-")
-          movies.push(Movie.where(year: date_comp[0].to_i, month: date_comp[1].to_i, day: date_comp[2].to_i))
-        end
-        movies.flatten!
-        render json: [movies]
+        movies = ApiController.helpers.pull_events_in_range(Movie, params[:start], params[:end])
+        render json: movies
       end
     end
   end
@@ -80,21 +54,8 @@ class ApiController < ApplicationController
   def songs_in_range
     respond_to do |format|
       format.json do
-        start_date = params[:start]
-        end_date = params[:end]
-        start_month, start_day, start_year = ApiController.helpers.date_splitter(start_date)
-        end_month, end_day, end_year = ApiController.helpers.date_splitter(end_date)
-
-        start_date = Date.new(start_year, start_month, start_day)
-        end_date = Date.new(end_year, end_month, end_day)
-        date_range = ApiController.helpers.create_range(start_date, end_date)
-        songs = []
-        date_range.each do |date|
-          date_comp = date.split("-")
-          songs.push(Song.where(year: date_comp[0].to_i, month: date_comp[1].to_i, day: date_comp[2].to_i))
-        end
-        songs.flatten!
-        render json: [songs]
+        songs = ApiController.helpers.pull_events_in_range(Song, params[:start], params[:end])
+        render json: songs
       end
     end
   end
