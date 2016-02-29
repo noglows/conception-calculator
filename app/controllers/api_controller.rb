@@ -60,5 +60,18 @@ class ApiController < ApplicationController
     end
   end
 
+  def conception_range
+    respond_to do |format|
+      format.json do
+        birth_month, birth_day, birth_year = ApiController.helpers.date_splitter(params[:birthday])
+        birthdate = Date.new(birth_year, birth_month, birth_day)
+        conception_date = birthdate - 266
+        start_date = conception_date - 3
+        end_date = conception_date + 3
+        render json: [start_date, end_date]
+      end
+    end
+  end
+
 
 end

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/event_range' => 'api#events_in_range'
   get '/song_range' => 'api#songs_in_range'
   get '/movie_range' => 'api#movies_in_range'
+
+  get '/conception_range' => 'api#conception_range'
    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
