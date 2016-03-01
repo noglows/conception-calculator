@@ -53,6 +53,17 @@ window.requestAnimationFrame(function () {
         for (i = 0; i < data.length; i++) {
           $("#songs").append("<p>" + data[i].title + " by " + data[i].artist + "</p>");
         }
+        $.ajax({
+          method: "GET",
+          url: "/get_youtube_id",
+          data: "search=" + data[0].title + " " + data[0].artist
+        })
+        .done(function(data) {
+          var start = '<iframe id="player" type="text/html" class="four youtube-video" src="http://www.youtube.com/embed/';
+          var end = '?enablejsapi=1&origin=http://example.com" frameborder="0"></iframe>';
+
+          $("#songs").append(start + data + end);
+        });
       });
       $.ajax({
         method: "GET",
@@ -63,6 +74,17 @@ window.requestAnimationFrame(function () {
         for (i = 0; i < data.length; i++) {
           $("#movies").append("<p>" + data[i].title + "</p>");
         }
+        $.ajax({
+          method: "GET",
+          url: "/get_youtube_id",
+          data: "search=" + data[0].title + " trailer"
+        })
+        .done(function(data) {
+          var start = '<iframe id="player" type="text/html" class="four youtube-video" src="http://www.youtube.com/embed/';
+          var end = '?enablejsapi=1&origin=http://example.com" frameborder="0"></iframe>';
+
+          $("#movies").append(start + data + end);
+        });
       });
     });
   });

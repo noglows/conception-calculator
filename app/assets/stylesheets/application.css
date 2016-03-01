@@ -47,6 +47,10 @@
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.youtube-video {
+  width: 100%;
+}
+
 .navbar {
   border-bottom: 1px solid black;
   border-top: 1px solid black;

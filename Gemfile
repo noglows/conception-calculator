@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Project related
 gem 'httparty'
+gem 'typhoeus'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
@@ -43,6 +44,8 @@ gem 'skeleton-rails', github: 'helios-technologies/skeleton-rails'
 gem 'font-awesome-rails'
 # Facebook
 gem "koala", "~> 2.2"
+# Attempt to fix certificate issue
+gem 'certified', '~> 1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

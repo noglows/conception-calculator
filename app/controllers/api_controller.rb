@@ -73,4 +73,19 @@ class ApiController < ApplicationController
     end
   end
 
+  # Want this method to take a search term and return the video id for the top result
+  def get_youtube_id
+    respond_to do |format|
+      format.json do
+        # CANNOT GET API TO WORK - CERTIFICATE ERROR
+        #https://www.youtube.com/watch?v=C_3d6GntKbk
+        if params[:search].include? "trailer"
+          response = 'XNcs9DrKYRU'
+        else
+          response = 'C_3d6GntKbk'
+        end
+        render json: [response]
+      end
+    end
+  end
 end
