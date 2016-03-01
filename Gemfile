@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-
+#Elastic Beanstalk
+gem 'puma'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use sqlite3 as the database for Active Record
@@ -46,6 +47,8 @@ gem 'font-awesome-rails'
 gem "koala", "~> 2.2"
 # Attempt to fix certificate issue
 gem 'certified', '~> 1.0'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
