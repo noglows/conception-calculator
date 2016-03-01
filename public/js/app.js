@@ -3,28 +3,38 @@ window.requestAnimationFrame(function () {
   $("#songs").empty();
   $("#movies").empty();
   $("#conceptionRange").empty();
-  var checked = true;
   $("#moreOptions").hide();
   $("#checkUnusual").click(function() {
     $("#moreOptions").toggle();
   });
 
-  var atLeastOneIsChecked = $('#checkArray:checkbox:checked').length > 0;
-  console.log(atLeastOneIsChecked);
-//there should be no space between identifier and selector
+  $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
+  $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
+    if( $(this).attr("name") ) {
+        $(this).parent().addClass("success").siblings().removeClass("success");
+    } else {
+        $(this).parent().toggleClass("success");
+    }
+  });
 
   $("#birthdayInputButton").click(function() {
     var output = $("#birthdayInput").val();
     var split_output = output.split("-");
     output_as_date = split_output[1] + "/" + split_output[2] + "/" + split_output[0];
+
     $("#events").empty();
     $("#songs").empty();
     $("#movies").empty();
     $("#conceptionRange").empty();
+
+    var unusual = ($("#checkUnusual:checkbox:checked").length > 0);
+    var number = $('#actualBirthInput').val();
+    var modifier = $('.success').text();
+
     $.ajax({
       method: "GET",
       url: "/conception_range",
-      data: "birthday=" + output_as_date,
+      data: "birthday=" + output_as_date + "&unusual=" + unusual + "&number=" + number + "&modifier=" + modifier,
     })
     .done(function(data) {
       start_date = data[0];
