@@ -128,6 +128,11 @@
 #   movie.save
 # end
 
+#dynamoDB = Aws::DynamoDB::Resource.new()
+#table = dynamoDB.table('Movies')
+#binding.pry
+dynamodb = Aws::DynamoDB::Client.new
+
 File.open("./wiki_data/movies_formatted.txt", "r").each do |line|
   a = line.split(", ")
 
@@ -140,6 +145,15 @@ File.open("./wiki_data/movies_formatted.txt", "r").each do |line|
   day = a[2].to_i
   title = a[3].gsub!("\n", "")
 
-  movie = Movie.create! :year => year, :month => month, :day => day, :title => title
-  movie.save
+  dynamodb.put_item( :table_name => "Movies", :item =>
+  {
+      "year" => year,
+      "month" => month,
+      "day" => day,
+      "title" => title
+  })
+  binding.pry
+
+  #movie = Movie.create! :year => year, :month => month, :day => day, :title => title
+  #movie.save
 end
