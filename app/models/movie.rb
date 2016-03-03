@@ -1,5 +1,5 @@
 class Movie
-  include Dynamoid::Document
+  include Mongoid::Document
   field :year, :integer
   field :month, :integer
   field :day, :integer
