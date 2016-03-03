@@ -49,11 +49,11 @@ gem "koala", "~> 2.2"
 gem 'certified', '~> 1.0'
 
 # DynamoDB
-gem 'dynamoid'
+#gem 'dynamoid'
 gem 'aws-sdk'
 
 # AWS
-gem 'unicorn'
+#gem 'unicorn'
 
 
 
