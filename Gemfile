@@ -47,9 +47,14 @@ gem 'font-awesome-rails'
 gem "koala", "~> 2.2"
 # Attempt to fix certificate issue
 gem 'certified', '~> 1.0'
+
 # DynamoDB
 gem 'dynamoid'
 gem 'aws-sdk'
+
+# AWS
+gem 'unicorn'
+
 
 
 
