@@ -48,35 +48,8 @@ class ApiController < ApplicationController
   def songs_for_day
     respond_to do |format|
       format.json do
-        start_date = params[:start]
-        month, day, year = ApiController.helpers.date_splitter(start_date)
-        dynamodb = Aws::DynamoDB::Client.new
-        tableName = "XMYS_Songs"
-
-        code = year.to_s
-        if month.to_s.length < 2
-          code += "0"
-        end
-        code += month.to_s
-        if day.to_s.length < 2
-          code += "0"
-        end
-        code += day.to_s
-
-        params = {
-          table_name: tableName,
-          key_condition_expression: "#yr = :yyyy and #st = :sort_key",
-          expression_attribute_names: {
-            "#yr" => "year",
-            "#st" => "sort"
-          },
-          expression_attribute_values: {
-            ":yyyy" => year.to_f,
-            ":sort_key" => code
-          }
-        }
-        result = dynamodb.query(params)
-        render json: result.items
+        song = ApiController.helpers.single_day_event(Song, params[:start])
+        render json: song.items[0]
       end
     end
   end
@@ -84,10 +57,8 @@ class ApiController < ApplicationController
   def movie_for_day
     respond_to do |format|
       format.json do
-        start_date = params[:start]
-        month, day, year = ApiController.helpers.date_splitter(start_date)
-        movies = Movie.where(year: year, month: month, day: day)
-        render json: [movies]
+        movie = ApiController.helpers.single_day_event(Movie, params[:start])
+        render json: movie.items[0]
       end
     end
   end

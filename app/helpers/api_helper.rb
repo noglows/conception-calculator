@@ -52,8 +52,6 @@ module ApiHelper
         code += "0"
       end
       code += day.to_s
-
-
       params = {
         table_name: tableName,
         key_condition_expression: "#yr = :yyyy and #st = :sort_key",
@@ -66,12 +64,41 @@ module ApiHelper
           ":sort_key" => code
         }
       }
-
       result = dynamodb.query(params)
       events.push(result.items)
-
     end
     events.flatten!
     return events
+  end
+
+  def single_day_event(type, date)
+    month, day, year = ApiController.helpers.date_splitter(date)
+    dynamodb = Aws::DynamoDB::Client.new
+    tableName = "XMYS_#{type}s"
+
+    code = year.to_s
+    if month.to_s.length < 2
+      code += "0"
+    end
+    code += month.to_s
+    if day.to_s.length < 2
+      code += "0"
+    end
+    code += day.to_s
+
+    params = {
+      table_name: tableName,
+      key_condition_expression: "#yr = :yyyy and #st = :sort_key",
+      expression_attribute_names: {
+        "#yr" => "year",
+        "#st" => "sort"
+      },
+      expression_attribute_values: {
+        ":yyyy" => year.to_f,
+        ":sort_key" => code
+      }
+    }
+    event = dynamodb.query(params)
+    return event
   end
 end
