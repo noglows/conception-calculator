@@ -5,7 +5,7 @@
   <ul>
     <% @events.each do |event| %>
     <li>
-      <%= "#{event.year} #{event.month} #{event.day} - #{event.info}" %>
+      <%= "#{event["year"].to_i} #{event["month"].to_i} #{event["day"].to_i} - #{event["info"]}" %>
     </li>
     <% end %>
   </ul>

@@ -4,7 +4,7 @@
   <ul>
     <% @songs.each do |song| %>
     <li>
-      <%= "#{song.year} #{song.month} #{song.day} - #{song.title}, #{song.artist}" %>
+      <%= "#{song["year"].to_i} #{song["month"].to_i} #{song["day"].to_i} - #{song["title"]}, #{song["artist"]}" %>
     </li>
     <% end %>
   </ul>
