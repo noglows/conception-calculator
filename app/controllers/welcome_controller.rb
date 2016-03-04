@@ -19,7 +19,7 @@ class WelcomeController < ApplicationController
     @songs = []
     dynamodb = Aws::DynamoDB::Client.new
 
-    response = dynamodb.scan(table_name: 'Songs')
+    response = dynamodb.scan(table_name: 'XMYS_Songs')
     items = response.items
     items.each do |item|
       @songs.push(item)
@@ -36,7 +36,6 @@ class WelcomeController < ApplicationController
     items.each do |item|
       @movies.push(item)
     end
-    binding.pry
     @movies.sort_by! { |hsh| [hsh["year"], hsh["month"], hsh["day"]] }
   end
 end

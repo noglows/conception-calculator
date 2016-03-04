@@ -50,8 +50,33 @@ class ApiController < ApplicationController
       format.json do
         start_date = params[:start]
         month, day, year = ApiController.helpers.date_splitter(start_date)
-        songs = Song.where(year: year, month: month, day: day)
-        render json: [songs]
+        dynamodb = Aws::DynamoDB::Client.new
+        tableName = "XMYS_Songs"
+
+        code = year.to_s
+        if month.to_s.length < 2
+          code += "0"
+        end
+        code += month.to_s
+        if day.to_s.length < 2
+          code += "0"
+        end
+        code += day.to_s
+
+        params = {
+          table_name: tableName,
+          key_condition_expression: "#yr = :yyyy and #st = :sort_key",
+          expression_attribute_names: {
+            "#yr" => "year",
+            "#st" => "sort"
+          },
+          expression_attribute_values: {
+            ":yyyy" => year.to_f,
+            ":sort_key" => code
+          }
+        }
+        result = dynamodb.query(params)
+        render json: result.items
       end
     end
   end
