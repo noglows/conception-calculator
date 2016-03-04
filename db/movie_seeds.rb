@@ -64,38 +64,41 @@ rescue  Aws::DynamoDB::Errors::ServiceError => error
     puts "#{error.message}"
 end
 
-
-tableName = 'Movies'
-
-File.open("./wiki_data/movies_formatted.txt", "r").each do |line|
+File.open("./wiki_test_data/test_movie_data.txt", "r").each do |line|
   a = line.split(", ")
-
-  months = {"January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8, "September" => 9, "October" => 10 }
-  months["November"] = 11
-  months["December"] = 12
-
   year = a[0].to_i
   month = months[a[1]].to_i
   day = a[2].to_i
   title = a[3].gsub!("\n", "")
 
+  code = ""
+  code += year.to_s
+  if month.to_s.length < 2
+    code += "0"
+  end
+  code += month.to_s
+  if day.to_s.length < 2
+    code += "0"
+  end
+  code += day.to_s
+
   params = {
-    table_name: tableName,
+    table_name: "XMYS_Movies",
     item: {
-      :_id => SecureRandom.uuid,
       :year => year.to_f,
+      :sort => code,
       :month => month.to_f,
       :day => day.to_f,
       :title => title
     }
   }
 
-  begin
-      result = dynamodb.put_item(params)
-      puts "Added movie: #{year.to_i} #{month} #{day} - #{title}"
 
+  begin
+    result = dynamodb.put_item(params)
+    puts "Added movie: #{year.to_i} #{month} #{day} - #{title}"
   rescue  Aws::DynamoDB::Errors::ServiceError => error
-      puts "Unable to add movie:"
-      puts "#{error.message}"
+    puts "Unable to add movie:"
+    puts "#{error.message}"
   end
 end

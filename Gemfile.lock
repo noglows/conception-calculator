@@ -55,7 +55,6 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bson (4.0.3)
     builder (3.2.2)
     byebug (8.2.2)
     certified (1.0.0)
@@ -122,13 +121,6 @@ GEM
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    mongo (2.2.4)
-      bson (~> 4.0)
-    mongoid (5.1.1)
-      activemodel (~> 4.0)
-      mongo (~> 2.1)
-      origin (~> 2.2)
-      tzinfo (>= 0.3.37)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -155,7 +147,6 @@ GEM
     omniauth-twitter (1.2.1)
       json (~> 1.3)
       omniauth-oauth (~> 1.1)
-    origin (2.2.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -271,7 +262,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   koala (~> 2.2)
-  mongoid (~> 5.1.0)
   omniauth
   omniauth-facebook
   omniauth-twitter

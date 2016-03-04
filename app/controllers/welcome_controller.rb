@@ -1,20 +1,14 @@
 class WelcomeController < ApplicationController
 
-  Aws.config.update({
-    region: "us-west-2",
-    endpoint: "http://localhost:8000"
-  })
-
   def index
   end
 
   def events
     @events = []
-
     dynamodb = Aws::DynamoDB::Client.new
-
-    response = dynamodb.scan(table_name: 'Events')
+    response = dynamodb.scan(table_name: 'Events_New')
     items = response.items
+    binding.pry
     items.each do |item|
       @events.push(item)
     end
@@ -37,11 +31,12 @@ class WelcomeController < ApplicationController
     @movies = []
     dynamodb = Aws::DynamoDB::Client.new
 
-    response = dynamodb.scan(table_name: 'Movies')
+    response = dynamodb.scan(table_name: 'XMYS_Movies')
     items = response.items
     items.each do |item|
       @movies.push(item)
     end
+    binding.pry
     @movies.sort_by! { |hsh| [hsh["year"], hsh["month"], hsh["day"]] }
   end
 end
