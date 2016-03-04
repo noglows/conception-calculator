@@ -19,7 +19,6 @@ class WelcomeController < ApplicationController
       @events.push(item)
     end
     @events.sort_by! { |hsh| [hsh["year"], hsh["month"], hsh["day"]] }
-    binding.pry
   end
 
   def songs

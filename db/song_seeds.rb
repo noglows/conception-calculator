@@ -11,32 +11,6 @@ Aws.config.update({
 dynamodb = Aws::DynamoDB::Client.new
 
 params = {
-    table_name: "Movies"
-}
-
-begin
-    result = dynamodb.delete_table(params)
-    puts "Deleted table."
-
-rescue  Aws::DynamoDB::Errors::ServiceError => error
-    puts "Unable to delete table:"
-    puts "#{error.message}"
-end
-
-params = {
-    table_name: "Events"
-}
-
-begin
-    result = dynamodb.delete_table(params)
-    puts "Deleted table."
-
-rescue  Aws::DynamoDB::Errors::ServiceError => error
-    puts "Unable to delete table:"
-    puts "#{error.message}"
-end
-
-params = {
     table_name: "Songs"
 }
 

@@ -66,7 +66,7 @@ tableName = 'Events'
 
 years = (1902..2015).to_a
 years.each do |year|
-  File.open("./wiki_data/#{year}_ready.txt", "r").each do |line|
+  File.open("./wiki_data/event_years/#{year}_ready.txt", "r").each do |line|
     a = line.split(", ")
     check = 3
     info = ""
@@ -107,7 +107,6 @@ years.each do |year|
         :end_day => a[check+3]
       }
     }
-    binding.pry
     begin
         result = dynamodb.put_item(params)
         puts "Added event: #{a[0].to_i} #{months[a[1]].to_i} #{a[2].to_i} - #{info}"
@@ -120,7 +119,7 @@ years.each do |year|
 end
 
 
-File.open("./wiki_data/error_file.txt", "r").each do |line|
+File.open("./wiki_data/event_years/error_file.txt", "r").each do |line|
   a = line.split(", ")
   check = 3
   info = ""

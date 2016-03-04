@@ -4,7 +4,7 @@
   <ul>
     <% @movies.each do |movie| %>
     <li>
-      <%= "#{movie.year} #{movie.month} #{movie.day} - #{movie.title}" %>
+      <%= "#{movie["year"].to_i} #{movie["month"].to_i} #{movie["day"].to_i} - #{movie["title"]}" %>
     </li>
     <% end %>
   </ul>
