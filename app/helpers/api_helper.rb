@@ -52,23 +52,49 @@ module ApiHelper
         code += "0"
       end
       code += day.to_s
-      params = {
-        table_name: tableName,
-        key_condition_expression: "#yr = :yyyy and #st = :sort_key",
-        expression_attribute_names: {
-          "#yr" => "year",
-          "#st" => "sort"
-        },
-        expression_attribute_values: {
-          ":yyyy" => year.to_f,
-          ":sort_key" => code
+
+      if type == Event
+        start = 0
+        still_records = true
+        while still_records == true
+          params = {
+            table_name: tableName,
+            key_condition_expression: "#yr = :yyyy and #st = :sort_key",
+            expression_attribute_names: {
+              "#yr" => "year",
+              "#st" => "sort"
+            },
+            expression_attribute_values: {
+              ":yyyy" => year.to_f,
+              ":sort_key" => code + start.to_s
+            }
+          }
+          event = dynamodb.query(params)
+          start += 1
+          if event.items == []
+            still_records = false
+          else
+            events.push(event.items)
+          end
+        end
+      else
+        params = {
+          table_name: tableName,
+          key_condition_expression: "#yr = :yyyy and #st = :sort_key",
+          expression_attribute_names: {
+            "#yr" => "year",
+            "#st" => "sort"
+          },
+          expression_attribute_values: {
+            ":yyyy" => year.to_f,
+            ":sort_key" => code
+          }
         }
-      }
-      result = dynamodb.query(params)
-      events.push(result.items)
+        result = dynamodb.query(params)
+        events.push(result.items)
+      end
     end
-    events.flatten!
-    return events
+    return events.flatten!
   end
 
   def single_day_event(type, date)
@@ -86,8 +112,8 @@ module ApiHelper
     end
     code += day.to_s
 
-    if type == "Event"
-      start = 1
+    if type == Event
+      start = 0
       events = []
       still_records = true
       while still_records == true
@@ -105,12 +131,13 @@ module ApiHelper
         }
         event = dynamodb.query(params)
         start += 1
-        if event == []
+        if event.items == []
           still_records = false
         else
-          events.push(event)
+          events.push(event.items)
         end
       end
+      return events.flatten!
     else
       params = {
         table_name: tableName,

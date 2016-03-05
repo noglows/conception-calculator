@@ -20,7 +20,7 @@ class ApiController < ApplicationController
         }
         result = dynamodb.scan(params)
         binding.pry
-        render json: result.items
+        render json: result
       end
     end
   end
@@ -28,43 +28,8 @@ class ApiController < ApplicationController
   def events_for_day
     respond_to do |format|
       format.json do
-        start_date = params[:start]
-
-        month, day, year = ApiController.helpers.date_splitter(start_date)
-        dynamodb = Aws::DynamoDB::Client.new
-
-        Aws.config.update({
-           region: 'us-west-2',
-           credentials: Aws::Credentials.new(ENV["AWS_ACCESS_KEY_ID"], ENV["AWS_SECRET_ACCESS_KEY"]),
-         })
-
-         dynamodb.scan :table_name => "events"
-
-        a = Event.all
-
-        # params = {
-        #   table_name: "Events",
-        #   projection_expression: "#yr, month, day"
-        #   key_condition_expression: "#yr = :yyyy and #mo = :",
-        #   expression_attribute_names: {
-        #       "#yr" => "year"
-        #   },
-        #   expression_attribute_values: {
-        #       ":yyyy" => year
-        #       "month"
-        #   }
-        # }
-
-        #result = dynamodb.query(params)
-        events = []
-        result.items.each{|movie|
-            events.push(event)
-        }
-        #response = dynamodb.scan(table_name: 'Events')
-        #items = response.items
-
-        #events = Event.where(year: year, month: month, day: day)
-        render json: [events]
+        event = ApiController.helpers.single_day_event(Event, params[:start])
+        render json: event
       end
     end
   end
