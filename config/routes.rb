@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get '/conception_range' => 'api#conception_range'
 
   get '/get_youtube_id' => 'api#get_youtube_id'
+
+  get '/test_filter' => 'api#test_filter'
    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -86,19 +86,46 @@ module ApiHelper
     end
     code += day.to_s
 
-    params = {
-      table_name: tableName,
-      key_condition_expression: "#yr = :yyyy and #st = :sort_key",
-      expression_attribute_names: {
-        "#yr" => "year",
-        "#st" => "sort"
-      },
-      expression_attribute_values: {
-        ":yyyy" => year.to_f,
-        ":sort_key" => code
+    if type == "Event"
+      start = 1
+      events = []
+      still_records = true
+      while still_records == true
+        params = {
+          table_name: tableName,
+          key_condition_expression: "#yr = :yyyy and #st = :sort_key",
+          expression_attribute_names: {
+            "#yr" => "year",
+            "#st" => "sort"
+          },
+          expression_attribute_values: {
+            ":yyyy" => year.to_f,
+            ":sort_key" => code + start.to_s
+          }
+        }
+        event = dynamodb.query(params)
+        start += 1
+        if event == []
+          still_records = false
+        else
+          events.push(event)
+        end
+      end
+    else
+      params = {
+        table_name: tableName,
+        key_condition_expression: "#yr = :yyyy and #st = :sort_key",
+        expression_attribute_names: {
+          "#yr" => "year",
+          "#st" => "sort"
+        },
+        expression_attribute_values: {
+          ":yyyy" => year.to_f,
+          ":sort_key" => code
+        }
       }
-    }
-    event = dynamodb.query(params)
-    return event
+      event = dynamodb.query(params)
+      return event
+    end
   end
 end

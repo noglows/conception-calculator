@@ -96,8 +96,8 @@ File.open("./wiki_test_data/test_event_data.txt", "r").each do |line|
   params = {
     table_name: "Events",
     item: {
-      :_id => SecureRandom.uuid,
       :year => a[0].to_f,
+      :
       :month => months[a[1]].to_f,
       :day => a[2].to_f,
       :info => info,
