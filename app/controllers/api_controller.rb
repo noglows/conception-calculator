@@ -1,30 +1,5 @@
 class ApiController < ApplicationController
 
-  def test_filter
-    respond_to do |format|
-      format.json do
-        dynamodb = Aws::DynamoDB::Client.new
-        params = {
-          table_name: "XMYS_Songs",
-          #projection_expression: "#yr, title, info.genres, info.actors[0]",
-          key_condition_expression:
-              "(#yr = :yyyy) and (contains(#sort,:ssss))",
-          expression_attribute_names: {
-              "#yr" => "year",
-              "#sort" => "sort"
-          },
-          expression_attribute_values: {
-              ":yyyy" => 1991,
-              ":ssss" => "19910321"
-          }
-        }
-        result = dynamodb.scan(params)
-        binding.pry
-        render json: result
-      end
-    end
-  end
-
   def events_for_day
     respond_to do |format|
       format.json do

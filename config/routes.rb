@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   get '/all_movies' => 'welcome#movies'
   get '/all_events' => 'welcome#events'
 
-  get '/event' => 'api#events_for_day'
-  get '/song' => 'api#songs_for_day'
-  get '/movie' => 'api#movie_for_day'
+  get '/event' => 'api#events_for_day', as: :event
+  get '/song' => 'api#songs_for_day', as: :song
+  get '/movie' => 'api#movie_for_day', as: :movie
 
   get '/event_range' => 'api#events_in_range'
   get '/song_range' => 'api#songs_in_range'

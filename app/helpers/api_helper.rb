@@ -8,20 +8,11 @@ module ApiHelper
     return month, day, year
   end
 
-  def check_leap_year(year)
-    if year % 4 != 0
-      return false
-    elsif year % 100 !=0
-      return true
-    elsif year % 400 != 0
-      return false
-    else
-      return true
-    end
-  end
-
   def create_range(start_date, end_date)
     return (start_date..end_date).map(&:to_s)
+  end
+
+  def generate_data_code(year, month, day)
   end
 
   def pull_events_in_range(type, start_date, end_date)
