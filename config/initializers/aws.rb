@@ -8,7 +8,6 @@
 #
 #  })
 #
-#  binding.pry
 #
 #  Dynamoid.configure do |config|
 #   config.adapter = 'aws_sdk' # This adapter establishes a connection to the DynamoDB servers using Amazon's own AWS gem.

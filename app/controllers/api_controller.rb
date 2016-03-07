@@ -86,6 +86,7 @@ class ApiController < ApplicationController
   def get_youtube_id
     respond_to do |format|
       format.json do
+        binding.pry
         if params[:type] == "movie"
           search_term = params[:title] + " trailer"
         else
