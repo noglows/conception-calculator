@@ -1,4 +1,3 @@
-require 'pry'
 class ApiController < ApplicationController
 
   def events_for_day
