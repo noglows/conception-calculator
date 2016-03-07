@@ -1,4 +1,5 @@
 window.requestAnimationFrame(function () {
+  console.log("In the right file");
   $("#events").empty();
   $("#songs").empty();
   $("#movies").empty();
@@ -100,5 +101,4 @@ window.requestAnimationFrame(function () {
       });
     });
   });
-
 });
