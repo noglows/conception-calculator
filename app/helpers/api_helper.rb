@@ -102,7 +102,6 @@ module ApiHelper
       code += "0"
     end
     code += day.to_s
-
     if type == Event
       start = 0
       events = []
