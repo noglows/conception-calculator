@@ -1,5 +1,4 @@
 window.requestAnimationFrame(function () {
-  console.log("In the right file");
   $("#events").empty();
   $("#songs").empty();
   $("#movies").empty();
@@ -70,7 +69,6 @@ window.requestAnimationFrame(function () {
           data: "title=" + data[0].title + "&artist=" + data[0].artist + "&type=song"
         })
         .done(function(data) {
-          console.log(data);
           var start = '<iframe id="player" type="text/html" class="four youtube-video" src="http://www.youtube.com/embed/';
           var end = '?enablejsapi=1&origin=http://example.com" frameborder="0"></iframe>';
 
@@ -92,7 +90,6 @@ window.requestAnimationFrame(function () {
           data: "title=" + data[0].title + "&type=movie"
         })
         .done(function(data) {
-          console.log(data);
           var start = '<iframe id="player" type="text/html" class="four youtube-video" src="http://www.youtube.com/embed/';
           var end = '?enablejsapi=1&origin=http://example.com" frameborder="0"></iframe>';
 
