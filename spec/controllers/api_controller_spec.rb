@@ -82,4 +82,77 @@ RSpec.describe ApiController, type: :controller do
     end
   end
 
+  describe "GET 'conception_range'" do
+    let(:params) do
+      {
+        birthday: "3/21/1991"
+      }
+    end
+
+    let(:early_params) do
+      {
+        unusual: "true",
+        birthday: "3/21/1991",
+        number: 2,
+        modifier: "early"
+      }
+    end
+
+    let(:late_params) do
+      {
+        unusual: "true",
+        birthday: "3/21/1991",
+        number: 2,
+        modifier: "late"
+      }
+    end
+
+    it "returns a conception range for a normal birthday" do
+      get :conception_range, params
+      expect(JSON.parse(response.body)[0]).to eq "1990-06-25"
+      expect(JSON.parse(response.body)[1]).to eq "1990-07-01"
+    end
+
+    it "returns a conception range for an early birthday" do
+      get :conception_range, early_params
+      expect(JSON.parse(response.body)[0]).to eq "1990-07-09"
+      expect(JSON.parse(response.body)[1]).to eq "1990-07-15"
+    end
+
+    it "returns a conception range for a late birthday" do
+      get :conception_range, late_params
+      expect(JSON.parse(response.body)[0]).to eq "1990-06-11"
+      expect(JSON.parse(response.body)[1]).to eq "1990-06-17"
+    end
+  end
+
+  describe "GET 'get_youtube_id'" do
+    let(:movie_params) do
+      {
+        type: "movie",
+        title: "Lars and the Real Girl"
+      }
+    end
+
+    let(:song_params) do
+      {
+        type: "song",
+        title: "Your arms around me",
+        artist: "Jens Lekman"
+      }
+
+    end
+
+    it "returns correct video id for movie input" do
+      get :get_youtube_id, movie_params
+      expect(JSON.parse(response.body)[0]).to eq "XNcs9DrKYRU"
+    end
+
+    it "returns correct video id for movie input" do
+      get :get_youtube_id, song_params
+      expect(JSON.parse(response.body)[0]).to eq "NIwIAbcLFhI"
+    end
+  end
+
+
 end
