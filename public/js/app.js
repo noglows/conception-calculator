@@ -66,7 +66,7 @@ window.requestAnimationFrame(function () {
         $.ajax({
           method: "GET",
           url: "/get_youtube_id",
-          data: "search=" + data[0].title + " " + data[0].artist
+          data: "title=" + data[0].title + "&artist=" + data[0].artist + "&type=song"
         })
         .done(function(data) {
           var start = '<iframe id="player" type="text/html" class="four youtube-video" src="http://www.youtube.com/embed/';
@@ -87,7 +87,7 @@ window.requestAnimationFrame(function () {
         $.ajax({
           method: "GET",
           url: "/get_youtube_id",
-          data: "search=" + data[0].title + " trailer"
+          data: "title=" + data[0].title + "&type=movie"
         })
         .done(function(data) {
           var start = '<iframe id="player" type="text/html" class="four youtube-video" src="http://www.youtube.com/embed/';

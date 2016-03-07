@@ -6,9 +6,8 @@ class WelcomeController < ApplicationController
   def events
     @events = []
     dynamodb = Aws::DynamoDB::Client.new
-    response = dynamodb.scan(table_name: 'Events_New')
+    response = dynamodb.scan(table_name: 'XMYS_Events')
     items = response.items
-    binding.pry
     items.each do |item|
       @events.push(item)
     end

@@ -1,3 +1,4 @@
+require 'pry'
 class ApiController < ApplicationController
 
   def events_for_day
@@ -86,14 +87,22 @@ class ApiController < ApplicationController
   def get_youtube_id
     respond_to do |format|
       format.json do
+        if params[:type] == "movie"
+          search_term = params[:title] + " trailer"
+        else
+          search_term = params[:title] + " " + params[:artist]
+        end
+        headers = { "content-length" => "0", "user-agent" => "Yt::Request (gzip)" }
+        query_hash = { maxResults: 1, q: search_term, type: "video", key: "AIzaSyDEuXqr2zOm0_Jp4U0nTrqdHr3cISNAI10", part: "snippet" }
+        response = HTTParty.get("https://www.googleapis.com/youtube/v3/search", :query => query_hash, :headers => headers)
         # CANNOT GET API TO WORK - CERTIFICATE ERROR
         #https://www.youtube.com/watch?v=C_3d6GntKbk
-        if params[:search].include? "trailer"
-          response = 'XNcs9DrKYRU'
-        else
-          response = 'C_3d6GntKbk'
-        end
-        render json: [response]
+        # if params[:search].include? "trailer"
+        #   response = 'XNcs9DrKYRU'
+        # else
+        #   response = 'C_3d6GntKbk'
+        # end
+        render json: [response["items"][0]["id"]["videoId"]]
       end
     end
   end

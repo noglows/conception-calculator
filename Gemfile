@@ -66,6 +66,7 @@ group :development, :test do
 
   # Testing
   gem 'rspec-rails'
+  gem 'json_spec'
   gem 'simplecov'
   gem 'factory_girl_rails'
 end
