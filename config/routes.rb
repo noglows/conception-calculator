@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/test_filter' => 'api#test_filter'
 
   get '/test' => 'welcome#test'
+  get '/:id' => 'welcome#user_page'
    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

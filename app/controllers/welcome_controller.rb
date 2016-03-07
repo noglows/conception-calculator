@@ -4,6 +4,8 @@ class WelcomeController < ApplicationController
   end
 
   def test
+  # Your logic here
+    render layout: false
   end
 
   def events
