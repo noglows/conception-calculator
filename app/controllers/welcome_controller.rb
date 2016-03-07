@@ -3,6 +3,9 @@ class WelcomeController < ApplicationController
   def index
   end
 
+  def test
+  end
+
   def events
     @events = []
     dynamodb = Aws::DynamoDB::Client.new

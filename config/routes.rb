@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/get_youtube_id' => 'api#get_youtube_id'
 
   get '/test_filter' => 'api#test_filter'
+
+  get '/test' => 'welcome#test'
    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
