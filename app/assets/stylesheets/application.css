@@ -10,7 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree 
+ *= require_tree
  *= require_self
  *= require normalize
  *= require skeleton
@@ -106,4 +106,17 @@
     padding: 0;
     position: absolute;
     width: 1px;
+}
+
+/*.share {
+  text-align: center;
+}*/
+
+.twitter {
+  text-align: left;
+  margin-top: 4px;
+}
+
+.facebook {
+  text-align: right;
 }
