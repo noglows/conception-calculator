@@ -7,6 +7,10 @@ class WelcomeController < ApplicationController
   # Your logic here
   end
 
+  def user_page
+    @birthday = params[:id]
+  end
+
   def events
     @events = []
     dynamodb = Aws::DynamoDB::Client.new

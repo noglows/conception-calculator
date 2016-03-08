@@ -25,6 +25,11 @@
    color: #222;
  }
 
+ .homelink {
+   margin-left: auto;
+   margin-right: auto;
+ }
+
  .title {
    margin-bottom: 50px;
  }

@@ -9,6 +9,12 @@ window.requestAnimationFrame(function () {
     $("#moreOptions").toggle();
   });
 
+  if ((window.location.href == "http://localhost:3000/") || (window.location.href == "http://www.xmarksyourstart.com")) {
+
+  } else {
+
+  }
+
   $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
   $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
     if( $(this).attr("name") ) {
