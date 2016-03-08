@@ -1,4 +1,5 @@
 window.requestAnimationFrame(function () {
+  $(".data-returned").hide();
   $("#events").empty();
   $("#songs").empty();
   $("#movies").empty();
@@ -26,6 +27,7 @@ window.requestAnimationFrame(function () {
     $("#songs").empty();
     $("#movies").empty();
     $("#conceptionRange").empty();
+    $(".data-returned").show();
 
     var unusual = ($("#checkUnusual:checkbox:checked").length > 0);
     var number = $('#actualBirthInput').val();
