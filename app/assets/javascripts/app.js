@@ -85,7 +85,6 @@ window.requestAnimationFrame(function () {
       $("#moreOptions").toggle();
     });
 
-
     $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
     $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
       if( $(this).attr("name") ) {
@@ -95,14 +94,18 @@ window.requestAnimationFrame(function () {
       }
     });
 
-
     $("#birthdayInputButton").click(function() {
       var output = $("#birthdayInput").val();
       var split_output = output.split("-");
 
       $(".data-returned").show();
 
-      //var comb_output = split_output[0] + split_output[1] + split_output[2];
+      var comb_output = split_output[0] + split_output[1] + split_output[2];
+      var facebook_html = '<a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=#www.xmarksyourstart/'+ comb_output + '">Share on Facebook</a>';
+      var twitter_html = '<a target="_blank" href="http://twitter.com/share?text=Learn%20about%20my%20conception!&url=http://www.xmarksyourstart.com/'+ comb_output +'">Share This on Twitter</a>';
+
+      $(".facebook").append(facebook_html);
+      $(".twitter").append(twitter_html);
 
       output_as_date = split_output[1] + "/" + split_output[2] + "/" + split_output[0];
 
