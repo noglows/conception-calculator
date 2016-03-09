@@ -1,5 +1,5 @@
 window.requestAnimationFrame(function () {
-  if ((window.location.href !== "http://localhost:3000/") && (window.location.href !== "http://www.xmarksyourstart.com/")) {
+  if ((window.location.href != "http://localhost:3000/") && (window.location.href != "http://www.xmarksyourstart.com/")) {
     var url = window.location.href;
     url = url.replace("http://localhost:3000/", "");
     url = url.replace("http://www.xmarksyourstart.com/", "");
@@ -154,7 +154,7 @@ window.requestAnimationFrame(function () {
         $.ajax({
           method: "GET",
           url: "/event_range",
-          data: "start=" + start_date + "&end=" + end_date,
+          data: "start=" + start_date + "&end=" + end_date
         })
         .done(function(data) {
           for (i = 0; i < data.length; i++) {
@@ -164,7 +164,7 @@ window.requestAnimationFrame(function () {
         $.ajax({
           method: "GET",
           url: "/song_range",
-          data: "start=" + start_date + "&end=" + end_date,
+          data: "start=" + start_date + "&end=" + end_date
         })
         .done(function(data) {
           for (i = 0; i < data.length; i++) {

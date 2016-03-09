@@ -19,6 +19,7 @@ class ApiController < ApplicationController
   end
 
   def movie_for_day
+    #ApiController.helpers.json_call(method)
     respond_to do |format|
       format.json do
         movie = ApiController.helpers.single_day_event(Movie, params[:start])
