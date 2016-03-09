@@ -45,4 +45,8 @@ class WelcomeController < ApplicationController
     end
     @movies.sort_by! { |hsh| [hsh["year"], hsh["month"], hsh["day"]] }
   end
+
+  def letsencrypt
+    render plain: ENV['LE_AUTH_RESPONSE']
+  end
 end

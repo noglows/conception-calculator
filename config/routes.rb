@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get '/test' => 'welcome#test'
   get '/:id' => 'welcome#user_page'
+
+  get "/.well-known/acme-challenge/#{ENV['LE_AUTH_REQUEST']}", to: 'welcome#letsencrypt'
    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
