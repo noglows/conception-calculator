@@ -80,6 +80,8 @@ window.requestAnimationFrame(function () {
     $("#events").empty();
     $("#songs").empty();
     $("#movies").empty();
+    $(".facebook").empty();
+    $(".twitter").empty();
     $("#conceptionRange").empty();
     $("#moreOptions").hide();
     $("#checkUnusual").click(function() {
