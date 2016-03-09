@@ -1,8 +1,11 @@
 window.requestAnimationFrame(function () {
+  console.log(window.location.href);
   if ((window.location.href != "http://localhost:3000/") && (window.location.href != "http://www.xmarksyourstart.com/")) {
+    console.log("I'm in here");
     var url = window.location.href;
     url = url.replace("http://localhost:3000/", "");
     url = url.replace("http://www.xmarksyourstart.com/", "");
+    console.log(url);
     var year = url.substring(0,4);
     var month = url.substring(4,6);
     var day = url.substring(6,8);
