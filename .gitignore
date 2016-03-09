@@ -21,6 +21,7 @@
 *.DS_Store
 *.keep
 coverage
+ssl
 
 # Project Specific
 *.txt
