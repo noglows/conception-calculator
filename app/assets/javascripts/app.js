@@ -75,6 +75,7 @@ window.requestAnimationFrame(function () {
     });
 
   } else {
+    $("#about-text").hide();
     $(".data-returned").hide();
     $("#events").empty();
     $("#songs").empty();
@@ -83,6 +84,9 @@ window.requestAnimationFrame(function () {
     $("#moreOptions").hide();
     $("#checkUnusual").click(function() {
       $("#moreOptions").toggle();
+    });
+    $(".about").click(function() {
+      $("#about-text").toggle();
     });
 
     $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
