@@ -1,5 +1,5 @@
 window.requestAnimationFrame(function () {
-  if ((window.location.href != "http://localhost:3000/") && (window.location.href != "http://www.xmarksyourstart.com")) {
+  if ((window.location.href != "http://localhost:3000/") && (window.location.href != "http://www.xmarksyourstart.com/")) {
     var url = window.location.href;
     url = url.replace("http://localhost:3000/", "");
     url = url.replace("http://www.xmarksyourstart.com", "");
