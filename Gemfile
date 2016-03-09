@@ -45,6 +45,7 @@ gem 'skeleton-rails'#, github: 'helios-technologies/skeleton-rails'
 gem 'font-awesome-rails'
 # Facebook
 gem "koala", "~> 2.2"
+gem 'social-share-button'
 # Attempt to fix certificate issue
 gem 'certified', '~> 1.0'
 

@@ -1,5 +1,5 @@
 window.requestAnimationFrame(function () {
-  if ((window.location.href != "http://localhost:3000/") || (window.location.href != "http://www.xmarksyourstart.com")) {
+  if ((window.location.href != "http://localhost:3000/") && (window.location.href != "http://www.xmarksyourstart.com")) {
     var url = window.location.href;
     url = url.replace("http://localhost:3000/", "");
     url = url.replace("http://www.xmarksyourstart.com", "");
@@ -95,16 +95,22 @@ window.requestAnimationFrame(function () {
       }
     });
 
+
     $("#birthdayInputButton").click(function() {
       var output = $("#birthdayInput").val();
       var split_output = output.split("-");
+
+      $(".data-returned").show();
+
+      //var comb_output = split_output[0] + split_output[1] + split_output[2];
+
       output_as_date = split_output[1] + "/" + split_output[2] + "/" + split_output[0];
 
       $("#events").empty();
       $("#songs").empty();
       $("#movies").empty();
       $("#conceptionRange").empty();
-      $(".data-returned").show();
+
 
       var unusual = ($("#checkUnusual:checkbox:checked").length > 0);
       var number = $('#actualBirthInput').val();

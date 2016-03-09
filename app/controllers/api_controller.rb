@@ -66,7 +66,6 @@ class ApiController < ApplicationController
           modifier = nil
         end
         birth_month, birth_day, birth_year = ApiController.helpers.date_splitter(params[:birthday])
-        binding.pry
         birthdate = Date.new(birth_year, birth_month, birth_day)
         conception_date = birthdate - 266
         if number != 0
