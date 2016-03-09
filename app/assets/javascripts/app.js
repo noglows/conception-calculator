@@ -2,7 +2,7 @@ window.requestAnimationFrame(function () {
   if ((window.location.href != "http://localhost:3000/") && (window.location.href != "http://www.xmarksyourstart.com/")) {
     var url = window.location.href;
     url = url.replace("http://localhost:3000/", "");
-    url = url.replace("http://www.xmarksyourstart.com", "");
+    url = url.replace("http://www.xmarksyourstart.com/", "");
     var year = url.substring(0,4);
     var month = url.substring(4,6);
     var day = url.substring(6,8);
@@ -97,17 +97,18 @@ window.requestAnimationFrame(function () {
     $("#birthdayInputButton").click(function() {
       var output = $("#birthdayInput").val();
       var split_output = output.split("-");
+      var output_as_date = split_output[1] + "/" + split_output[2] + "/" + split_output[0];
+      var comb_output = split_output[0] + split_output[1] + split_output[2];
 
       $(".data-returned").show();
 
-      var comb_output = split_output[0] + split_output[1] + split_output[2];
       var facebook_html = '<a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=#www.xmarksyourstart/'+ comb_output + '">Share on Facebook</a>';
       var twitter_html = '<a target="_blank" href="http://twitter.com/share?text=Learn%20about%20my%20conception!&url=http://www.xmarksyourstart.com/'+ comb_output +'">Share This on Twitter</a>';
 
       $(".facebook").append(facebook_html);
       $(".twitter").append(twitter_html);
 
-      output_as_date = split_output[1] + "/" + split_output[2] + "/" + split_output[0];
+
 
       $("#events").empty();
       $("#songs").empty();
