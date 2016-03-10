@@ -1,6 +1,7 @@
 class ApiController < ApplicationController
 
   def events_for_day
+    #single_day_method(Event, params[:start])
     respond_to do |format|
       format.json do
         event = ApiController.helpers.single_day_event(Event, params[:start])
@@ -9,7 +10,9 @@ class ApiController < ApplicationController
     end
   end
 
-  def songs_for_day
+  def song_for_day
+    # song = single_day_method(Song, params[:start])
+    # render json: [song]
     respond_to do |format|
       format.json do
         song = ApiController.helpers.single_day_event(Song, params[:start])
@@ -19,7 +22,7 @@ class ApiController < ApplicationController
   end
 
   def movie_for_day
-    #ApiController.helpers.json_call(method)
+    #single_day_method(Movie, params[:start])
     respond_to do |format|
       format.json do
         movie = ApiController.helpers.single_day_event(Movie, params[:start])
@@ -29,6 +32,7 @@ class ApiController < ApplicationController
   end
 
   def events_in_range
+    #ApiController.helpers.range_method(Event, params[:start], params[:end])
     respond_to do |format|
       format.json do
         events = ApiController.helpers.pull_events_in_range(Event, params[:start], params[:end])
@@ -38,6 +42,7 @@ class ApiController < ApplicationController
   end
 
   def movies_in_range
+    #ApiController.helpers.range_method(Movie, params[:start], params[:end])
     respond_to do |format|
       format.json do
         movies = ApiController.helpers.pull_events_in_range(Movie, params[:start], params[:end])
@@ -47,6 +52,7 @@ class ApiController < ApplicationController
   end
 
   def songs_in_range
+    #ApiController.helpers.range_method(Song, params[:start], params[:end])
     respond_to do |format|
       format.json do
         songs = ApiController.helpers.pull_events_in_range(Song, params[:start], params[:end])
@@ -99,4 +105,14 @@ class ApiController < ApplicationController
       end
     end
   end
+
+  private
+  # def single_day_method(type, start_day)
+  #   respond_to do |format|
+  #     format.json do
+  #       event = ApiController.helpers.single_day_event(type, start_day)
+  #       render json: event
+  #     end
+  #   end
+  # end
 end

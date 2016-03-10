@@ -19,14 +19,14 @@ RSpec.describe ApiController, type: :controller do
     end
   end
 
-  describe "GET 'songs_for_day'" do
+  describe "GET 'song_for_day'" do
     let(:params) do
       {
         start: "3/29/1986"
       }
     end
     it "returns expected event for a given day" do
-      get :songs_for_day, params
+      get :song_for_day, params
       expect(JSON.parse(response.body)["artist"]).to eq "Falco"
     end
   end
