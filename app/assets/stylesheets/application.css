@@ -15,8 +15,7 @@
  *= require normalize
  *= require skeleton
  *= require font-awesome
- *= require social-share-button
- @import "social-share-button";
+
  */
 
  body {

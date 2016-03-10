@@ -1,7 +1,7 @@
 window.requestAnimationFrame(function () {
-  if ((window.location.href !== "http://localhost:3000/") && (window.location.href !== "http://www.xmarksyourstart.com/") && (window.location.href !== "https://www.xmarksyourstart.com/")) {
+  if ((window.location.href !== "http://localhost:3002/") && (window.location.href !== "http://www.xmarksyourstart.com/") && (window.location.href !== "https://www.xmarksyourstart.com/") && (window.location.href !== "http://localhost:3002/test")) {
     var url = window.location.href;
-    url = url.replace("http://localhost:3000/", "");
+    url = url.replace("http://localhost:3002/", "");
     url = url.replace("http://www.xmarksyourstart.com/", "");
     var year = url.substring(0,4);
     var month = url.substring(4,6);
@@ -74,7 +74,7 @@ window.requestAnimationFrame(function () {
       });
     });
 
-  } else {
+  } else if ((window.location.href === "http://localhost:3002/") || (window.location.href === "http://www.xmarksyourstart.com/") || (window.location.href === "https://www.xmarksyourstart.com/")) {
     $("#about-text").hide();
     $(".data-returned").hide();
     $("#events").empty();

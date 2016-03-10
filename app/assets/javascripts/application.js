@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require jquery_ujs
 //= require turbolinks
+//= require d3
+//= require d3-timeline
 //= require_tree
