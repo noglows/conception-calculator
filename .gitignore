@@ -33,3 +33,6 @@ ssl
 !.elasticbeanstalk/*.global.yml
 
 !robots.txt
+
+# Works in Progress
+app_refactor.js
