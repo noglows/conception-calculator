@@ -40,8 +40,8 @@ function getYoutubeId(type, search) {
     data: "title=" + title + "&type=" + type + "&artist=" + artist
   })
   .done(function(data) {
-    var start = '<iframe id="player" type="text/html" class="four youtube-video" src="http://www.youtube.com/embed/';
-    var end = '?enablejsapi=1&origin=http://example.com" frameborder="0"></iframe>';
+    var start = '<iframe id="player" type="text/html" class="four youtube-video" src="https://www.youtube.com/embed/';
+    var end = '?enablejsapi=1&origin=https://www.xmarksyourstart.com" frameborder="0"></iframe>';
 
     $("#" + type + "s").append(start + data + end);
   });
