@@ -26,6 +26,51 @@ function checkUrl(url) {
   }
 }
 
+function getYoutubeId(type, search) {
+  if (type === "movie") {
+    var title = search;
+    var artist = "";
+  } else {
+    var title = search[0];
+    var artist = search[1];
+  }
+  $.ajax({
+    method: "GET",
+    url: "/get_youtube_id",
+    data: "title=" + title + "&type=" + type + "&artist=" + artist
+  })
+  .done(function(data) {
+    var start = '<iframe id="player" type="text/html" class="four youtube-video" src="http://www.youtube.com/embed/';
+    var end = '?enablejsapi=1&origin=http://example.com" frameborder="0"></iframe>';
+
+    $("#" + type + "s").append(start + data + end);
+  });
+}
+
+function getAllOTDTypes(startDate, endDate) {
+  var types = ["event", "song", "movie"];
+  for(var i = 0; i < types.length; i++) {
+    $.ajax({
+      method: "GET",
+      url: "/on_this_day_range",
+      data: "start=" + startDate + "&end=" + endDate + "&type=" + types[i]
+    })
+    .done(function(data) {
+      for (var j = 0; j < data.length; j++) {
+        if (data[0].info !== undefined) {
+          $("#events").append("<p>" + data[j].info + "</p>");
+        } else if (data[0].artist !== undefined) {
+          $("#songs").append("<p>" + data[j].title + " by " + data[j].artist + "</p>");
+          getYoutubeId("song", [data[0].title, data[0].artist]);
+        } else {
+          $("#movies").append("<p>" + data[j].title + "</p>");
+          getYoutubeId("movie", data[0].title);
+        }
+      }
+    });
+  }
+}
+
 function getAllData(birthday, unusual, number, modifier) {
   $.ajax({
     method: "GET",
@@ -37,58 +82,7 @@ function getAllData(birthday, unusual, number, modifier) {
     var endDate   = dateSplitter(data[1]);
 
     $("#conceptionRange").append("You were likely conceived between " + startDate + " and " + endDate + ".");
-    $.ajax({
-      method: "GET",
-      url: "/on_this_day_range",
-      data: "start=" + startDate + "&end=" + endDate + "&type=Event"
-    })
-    .done(function(data) {
-      for (i = 0; i < data.length; i++) {
-        $("#events").append("<p>" + data[i].info + "</p>");
-      }
-    });
-    $.ajax({
-      method: "GET",
-      url: "/on_this_day_range",
-      data: "start=" + startDate + "&end=" + endDate + "&type=Song"
-    })
-    .done(function(data) {
-      for (i = 0; i < data.length; i++) {
-        $("#songs").append("<p>" + data[i].title + " by " + data[i].artist + "</p>");
-      }
-      $.ajax({
-        method: "GET",
-        url: "/get_youtube_id",
-        data: "title=" + data[0].title + "&artist=" + data[0].artist + "&type=song"
-      })
-      .done(function(data) {
-        var start = '<iframe id="player" type="text/html" class="four youtube-video" src="http://www.youtube.com/embed/';
-        var end = '?enablejsapi=1&origin=http://example.com" frameborder="0"></iframe>';
-
-        $("#songs").append(start + data + end);
-      });
-    });
-    $.ajax({
-      method: "GET",
-      url: "/on_this_day_range",
-      data: "start=" + startDate + "&end=" + endDate + "&type=Movie"
-    })
-    .done(function(data) {
-      for (i = 0; i < data.length; i++) {
-        $("#movies").append("<p>" + data[i].title + "</p>");
-      }
-      $.ajax({
-        method: "GET",
-        url: "/get_youtube_id",
-        data: "title=" + data[0].title + "&type=movie"
-      })
-      .done(function(data) {
-        var start = '<iframe id="player" type="text/html" class="four youtube-video" src="http://www.youtube.com/embed/';
-        var end = '?enablejsapi=1&origin=http://example.com" frameborder="0"></iframe>';
-
-        $("#movies").append(start + data + end);
-      });
-    });
+    getAllOTDTypes(startDate, endDate);
   });
 }
 
