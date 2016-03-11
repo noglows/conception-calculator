@@ -88,7 +88,7 @@ module ApiHelper
     date_range = ApiController.helpers.create_range(start_date, end_date)
 
     dynamodb = Aws::DynamoDB::Client.new
-    tableName = "XMYS_#{type.capitalize}s"
+    table_name = "XMYS_#{type.capitalize}s"
 
     events = []
     date_range.each do |date|
@@ -101,9 +101,9 @@ module ApiHelper
       code = ApiController.helpers.generate_data_code(year, month, day)
 
       if type == Event || type.capitalize == "Event"
-        events = ApiController.helpers.get_events(events, dynamodb, tableName, year, code)
+        events = ApiController.helpers.get_events(events, dynamodb, table_name, year, code)
       else
-        events = ApiController.helpers.get_movies_or_songs(events, dynamodb, tableName, year, code)
+        events = ApiController.helpers.get_movies_or_songs(events, dynamodb, table_name, year, code)
       end
     end
     return events.flatten!
@@ -122,7 +122,7 @@ module ApiHelper
       code += "0"
     end
     code += day.to_s
-    if type == "event"
+    if type.capitalize == "Event"
       start = 0
       events = []
       still_records = true

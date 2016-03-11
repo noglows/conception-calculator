@@ -70,46 +70,75 @@ RSpec.describe ApiController, type: :controller do
     end
   end
 
+  describe "GET 'on_this_day_range'" do
+    let(:event_range_params) do
+      {
+        start: "1/5/1986",
+        end: "1/20/1986",
+        type: "event"
+      }
+    end
+    let(:song_range_params) do
+      {
+        start: "1/5/1986",
+        end: "1/20/1986",
+        type: "song"
+      }
+    end
+    let(:movie_range_params) do
+      {
+        start: "1/5/1986",
+        end: "1/20/1986",
+        type: "movie"
+      }
+    end
+    let(:null_event_range) do
+      {
+        start: "1/2/1986",
+        end: "1/8/1986",
+        type: "event"
+      }
+    end
+    let(:null_song_range) do
+      {
+        start: "1/5/1986",
+        end: "1/10/1986",
+        type: "song"
+      }
+    end
+    let(:null_movie_range) do
+      {
+        start: "1/6/1986",
+        end: "1/11/1986",
+        type: "movie"
+      }
+    end
 
-  #
-  # describe "GET 'events_in_range'" do
-  #   let(:params) do
-  #     {
-  #       start: "1/5/1986",
-  #       end: "1/20/1986"
-  #     }
-  #   end
-  #   it "returns expected event for a given day" do
-  #     get :events_in_range, params
-  #     expect(JSON.parse(response.body).length).to eq 5
-  #   end
-  # end
-  #
-  # describe "GET 'songs_in_range'" do
-  #   let(:params) do
-  #     {
-  #       start: "1/5/1986",
-  #       end: "1/20/1986"
-  #     }
-  #   end
-  #   it "returns expected event for a given day" do
-  #     get :songs_in_range, params
-  #     expect(JSON.parse(response.body).length).to eq 2
-  #   end
-  # end
-  #
-  # describe "GET 'movies_in_range'" do
-  #   let(:params) do
-  #     {
-  #       start: "1/5/1986",
-  #       end: "1/20/1986"
-  #     }
-  #   end
-  #   it "returns expected event for a given day" do
-  #     get :movies_in_range, params
-  #     expect(JSON.parse(response.body).length).to eq 3
-  #   end
-  # end
+    it "returns the expected events for a given range" do
+      get :on_this_day_range, event_range_params
+      expect(JSON.parse(response.body).length).to eq 5
+    end
+    it "returns the expected songs for a given range" do
+      get :on_this_day_range, song_range_params
+      expect(JSON.parse(response.body).length).to eq 2
+    end
+    it "returns the expected movies for a given range" do
+      get :on_this_day_range, movie_range_params
+      expect(JSON.parse(response.body).length).to eq 3
+    end
+    it "returns a null response for a range with no events" do
+      get :on_this_day_range, null_event_range
+      expect(JSON.parse(response.body)).to eq []
+    end
+    it "returns a null response for a range with no songs" do
+      get :on_this_day_range, null_song_range
+      expect(JSON.parse(response.body)).to eq []
+    end
+    it "returns a null response for a range with no events" do
+      get :on_this_day_range, null_movie_range
+      expect(JSON.parse(response.body)).to eq []
+    end
+  end
 
   describe "GET 'conception_range'" do
     let(:params) do

@@ -19,12 +19,15 @@ class ApiController < ApplicationController
     respond_to do |format|
       format.json do
         events = ApiController.helpers.pull_events_in_range(params[:type], params[:start], params[:end])
+        if events == nil
+          events = []
+        end
         render json: events
       end
     end
   end
 
-  
+
   def events_in_range
     #ApiController.helpers.range_method(Event, params[:start], params[:end])
     respond_to do |format|
