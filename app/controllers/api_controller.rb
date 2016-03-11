@@ -27,37 +27,6 @@ class ApiController < ApplicationController
     end
   end
 
-
-  def events_in_range
-    #ApiController.helpers.range_method(Event, params[:start], params[:end])
-    respond_to do |format|
-      format.json do
-        events = ApiController.helpers.pull_events_in_range(Event, params[:start], params[:end])
-        render json: events
-      end
-    end
-  end
-
-  def movies_in_range
-    #ApiController.helpers.range_method(Movie, params[:start], params[:end])
-    respond_to do |format|
-      format.json do
-        movies = ApiController.helpers.pull_events_in_range(Movie, params[:start], params[:end])
-        render json: movies
-      end
-    end
-  end
-
-  def songs_in_range
-    #ApiController.helpers.range_method(Song, params[:start], params[:end])
-    respond_to do |format|
-      format.json do
-        songs = ApiController.helpers.pull_events_in_range(Song, params[:start], params[:end])
-        render json: songs
-      end
-    end
-  end
-
   def conception_range
     respond_to do |format|
       format.json do
@@ -102,14 +71,4 @@ class ApiController < ApplicationController
       end
     end
   end
-
-  private
-  # def single_day_method(type, start_day)
-  #   respond_to do |format|
-  #     format.json do
-  #       event = ApiController.helpers.single_day_event(type, start_day)
-  #       render json: event
-  #     end
-  #   end
-  # end
 end
