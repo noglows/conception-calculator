@@ -73,6 +73,7 @@ group :development, :test do
   gem 'json_spec'
   gem 'simplecov'
   gem 'factory_girl_rails'
+  gem "codeclimate-test-reporter"
 end
 
 group :development do
