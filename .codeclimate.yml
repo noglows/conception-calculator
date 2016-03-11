@@ -48,8 +48,6 @@ index e69de29..1cedb38 100644
 +- db/
 +- spec/
 +- vendor/
-+- assets/javascripts/d3-timeline.js
-+- assets/javascripts/d3-timeline-events.js
 diff --git a/.csslintrc b/.csslintrc
 index e69de29..aacba95 100644
 --- a/.csslintrc
