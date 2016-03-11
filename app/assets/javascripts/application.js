@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require d3
 //= require d3-timeline
+//= require d3-timeline-events
 //= require_tree

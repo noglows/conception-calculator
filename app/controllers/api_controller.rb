@@ -1,36 +1,30 @@
 class ApiController < ApplicationController
 
-  def events_for_day
-    #single_day_method(Event, params[:start])
+  def on_this_day
     respond_to do |format|
       format.json do
-        event = ApiController.helpers.single_day_event(Event, params[:start])
+        event = ApiController.helpers.single_day_event(params[:type], params[:date])
+        if event == nil
+          event = []
+        end
+        if event.class != Array
+          event = event.items
+        end
         render json: event
       end
     end
   end
 
-  def song_for_day
-    # song = single_day_method(Song, params[:start])
-    # render json: [song]
+  def on_this_day_range
     respond_to do |format|
       format.json do
-        song = ApiController.helpers.single_day_event(Song, params[:start])
-        render json: song.items[0]
+        events = ApiController.helpers.pull_events_in_range(params[:type], params[:start], params[:end])
+        render json: events
       end
     end
   end
 
-  def movie_for_day
-    #single_day_method(Movie, params[:start])
-    respond_to do |format|
-      format.json do
-        movie = ApiController.helpers.single_day_event(Movie, params[:start])
-        render json: movie.items[0]
-      end
-    end
-  end
-
+  
   def events_in_range
     #ApiController.helpers.range_method(Event, params[:start], params[:end])
     respond_to do |format|

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
+  get '/on_this_day' => 'api#on_this_day'
+  get '/on_this_day_range' => 'api#on_this_day_range'
+
   get '/all_songs' => 'welcome#songs'
   get '/all_movies' => 'welcome#movies'
   get '/all_events' => 'welcome#events'
@@ -20,7 +23,10 @@ Rails.application.routes.draw do
   get '/test_filter' => 'api#test_filter'
 
   get '/test' => 'welcome#test'
+  get '/test2' => 'welcome#event_timeline'
   get '/:id' => 'welcome#user_page'
+
+
 
   get "/.well-known/acme-challenge/#{ENV['LE_AUTH_REQUEST']}", to: 'welcome#letsencrypt'
    # The priority is based upon order of creation: first created -> highest priority.

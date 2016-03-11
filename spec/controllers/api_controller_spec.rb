@@ -7,80 +7,109 @@ RSpec.describe ApiController, type: :controller do
     request.env["HTTP_ACCEPT"] = 'application/json'
   end
 
-  describe "GET 'events_for_day'" do
-    let(:params) do
+  describe "GET 'on_this_day'" do
+    let(:event_params) do
       {
-        start: "3/26/1991"
+        date: "3/26/1991",
+        type: "event"
+      }
+    end
+    let(:song_params) do
+      {
+        date: "3/29/1986",
+        type: "song"
+      }
+    end
+    let(:movie_params) do
+      {
+        date: "1/5/1986",
+        type: "movie"
+      }
+    end
+    let(:null_song) do
+      {
+        date: "1/5/1986",
+        type: "song"
+      }
+    end
+    let(:null_movie) do
+      {
+        date: "1/6/1986",
+        type: "movie"
+      }
+    end
+    let(:null_event) do
+      {
+        date: "1/2/1986",
+        type: "event"
       }
     end
     it "returns expected event for a given day" do
-      get :events_for_day, params, {:format => :json}
+      get :on_this_day, event_params, {:format => :json}
       expect(JSON.parse(response.body).length).to eql 3
     end
-  end
-
-  describe "GET 'song_for_day'" do
-    let(:params) do
-      {
-        start: "3/29/1986"
-      }
+    it "returns expected song for a given day" do
+      get :on_this_day, song_params, {:format => :json}
+      expect(JSON.parse(response.body)[0]["artist"]).to eq "Falco"
     end
-    it "returns expected event for a given day" do
-      get :song_for_day, params
-      expect(JSON.parse(response.body)["artist"]).to eq "Falco"
+    it "returns expected movie for a given day" do
+      get :on_this_day, movie_params, {:format => :json}
+      expect(JSON.parse(response.body)[0]["title"]).to eq "Rocky IV"
     end
-  end
-
-  describe "GET 'movie_for_day'" do
-    let(:params) do
-      {
-        start: "1/5/1986"
-      }
+    it "handles a null movie day as expected" do
+      get :on_this_day, null_movie, {:format => :json}
+      expect(JSON.parse(response.body)[0]).to eq nil
     end
-    it "returns expected event for a given day" do
-      get :movie_for_day, params
-      expect(JSON.parse(response.body)["title"]).to eq "Rocky IV"
+    it "handles a null song day as expected" do
+      get :on_this_day, null_song, {:format => :json}
+      expect(JSON.parse(response.body)[0]).to eq nil
+    end
+    it "handles a null event day as expected" do
+      get :on_this_day, null_event, {:format => :json}
+      expect(JSON.parse(response.body)[0]).to eq nil
     end
   end
 
-  describe "GET 'events_in_range'" do
-    let(:params) do
-      {
-        start: "1/5/1986",
-        end: "1/20/1986"
-      }
-    end
-    it "returns expected event for a given day" do
-      get :events_in_range, params
-      expect(JSON.parse(response.body).length).to eq 5
-    end
-  end
 
-  describe "GET 'songs_in_range'" do
-    let(:params) do
-      {
-        start: "1/5/1986",
-        end: "1/20/1986"
-      }
-    end
-    it "returns expected event for a given day" do
-      get :songs_in_range, params
-      expect(JSON.parse(response.body).length).to eq 2
-    end
-  end
-
-  describe "GET 'movies_in_range'" do
-    let(:params) do
-      {
-        start: "1/5/1986",
-        end: "1/20/1986"
-      }
-    end
-    it "returns expected event for a given day" do
-      get :movies_in_range, params
-      expect(JSON.parse(response.body).length).to eq 3
-    end
-  end
+  #
+  # describe "GET 'events_in_range'" do
+  #   let(:params) do
+  #     {
+  #       start: "1/5/1986",
+  #       end: "1/20/1986"
+  #     }
+  #   end
+  #   it "returns expected event for a given day" do
+  #     get :events_in_range, params
+  #     expect(JSON.parse(response.body).length).to eq 5
+  #   end
+  # end
+  #
+  # describe "GET 'songs_in_range'" do
+  #   let(:params) do
+  #     {
+  #       start: "1/5/1986",
+  #       end: "1/20/1986"
+  #     }
+  #   end
+  #   it "returns expected event for a given day" do
+  #     get :songs_in_range, params
+  #     expect(JSON.parse(response.body).length).to eq 2
+  #   end
+  # end
+  #
+  # describe "GET 'movies_in_range'" do
+  #   let(:params) do
+  #     {
+  #       start: "1/5/1986",
+  #       end: "1/20/1986"
+  #     }
+  #   end
+  #   it "returns expected event for a given day" do
+  #     get :movies_in_range, params
+  #     expect(JSON.parse(response.body).length).to eq 3
+  #   end
+  # end
 
   describe "GET 'conception_range'" do
     let(:params) do

@@ -88,7 +88,7 @@ module ApiHelper
     date_range = ApiController.helpers.create_range(start_date, end_date)
 
     dynamodb = Aws::DynamoDB::Client.new
-    tableName = "XMYS_#{type}s"
+    tableName = "XMYS_#{type.capitalize}s"
 
     events = []
     date_range.each do |date|
@@ -100,7 +100,7 @@ module ApiHelper
 
       code = ApiController.helpers.generate_data_code(year, month, day)
 
-      if type == Event
+      if type == Event || type.capitalize == "Event"
         events = ApiController.helpers.get_events(events, dynamodb, tableName, year, code)
       else
         events = ApiController.helpers.get_movies_or_songs(events, dynamodb, tableName, year, code)
@@ -112,7 +112,7 @@ module ApiHelper
   def single_day_event(type, date)
     month, day, year = ApiController.helpers.date_splitter(date)
     dynamodb = Aws::DynamoDB::Client.new
-    tableName = "XMYS_#{type}s"
+    table_name = "XMYS_#{type.capitalize}s"
     code = year.to_s
     if month.to_s.length < 2
       code += "0"
@@ -122,13 +122,13 @@ module ApiHelper
       code += "0"
     end
     code += day.to_s
-    if type == Event
+    if type == "event"
       start = 0
       events = []
       still_records = true
       while still_records == true
         params = {
-          table_name: tableName,
+          table_name: table_name,
           key_condition_expression: "#yr = :yyyy and #st = :sort_key",
           expression_attribute_names: {
             "#yr" => "year",
@@ -150,7 +150,7 @@ module ApiHelper
       return events.flatten!
     else
       params = {
-        table_name: tableName,
+        table_name: table_name,
         key_condition_expression: "#yr = :yyyy and #st = :sort_key",
         expression_attribute_names: {
           "#yr" => "year",

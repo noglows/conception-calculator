@@ -22,8 +22,8 @@ window.requestAnimationFrame(function () {
       $("#conceptionRange").append("You were likely conceived between " + start_date + " and " + end_date + ".");
       $.ajax({
         method: "GET",
-        url: "/event_range",
-        data: "start=" + start_date + "&end=" + end_date
+        url: "/on_this_day_range",
+        data: "start=" + start_date + "&end=" + end_date + "&type=Event"
       })
       .done(function(data) {
         for (i = 0; i < data.length; i++) {
@@ -32,8 +32,8 @@ window.requestAnimationFrame(function () {
       });
       $.ajax({
         method: "GET",
-        url: "/song_range",
-        data: "start=" + start_date + "&end=" + end_date
+        url: "/on_this_day_range",
+        data: "start=" + start_date + "&end=" + end_date + "&type=Song"
       })
       .done(function(data) {
         for (i = 0; i < data.length; i++) {
@@ -53,8 +53,8 @@ window.requestAnimationFrame(function () {
       });
       $.ajax({
         method: "GET",
-        url: "/movie_range",
-        data: "start=" + start_date + "&end=" + end_date
+        url: "/on_this_day_range",
+        data: "start=" + start_date + "&end=" + end_date + "&type=Movie"
       })
       .done(function(data) {
         for (i = 0; i < data.length; i++) {
@@ -153,8 +153,8 @@ window.requestAnimationFrame(function () {
         $("#conceptionRange").append("You were likely conceived between " + start_date + " and " + end_date + ".");
         $.ajax({
           method: "GET",
-          url: "/event_range",
-          data: "start=" + start_date + "&end=" + end_date
+          url: "/on_this_day_range",
+          data: "start=" + start_date + "&end=" + end_date + "&type=Event"
         })
         .done(function(data) {
           for (i = 0; i < data.length; i++) {
@@ -163,8 +163,8 @@ window.requestAnimationFrame(function () {
         });
         $.ajax({
           method: "GET",
-          url: "/song_range",
-          data: "start=" + start_date + "&end=" + end_date
+          url: "/on_this_day_range",
+          data: "start=" + start_date + "&end=" + end_date + "&type=Song"
         })
         .done(function(data) {
           for (i = 0; i < data.length; i++) {
@@ -184,8 +184,8 @@ window.requestAnimationFrame(function () {
         });
         $.ajax({
           method: "GET",
-          url: "/movie_range",
-          data: "start=" + start_date + "&end=" + end_date
+          url: "/on_this_day_range",
+          data: "start=" + start_date + "&end=" + end_date + "&type=Movie"
         })
         .done(function(data) {
           for (i = 0; i < data.length; i++) {
