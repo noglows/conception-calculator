@@ -80,11 +80,16 @@ function getAllData(birthday, unusual, number, modifier) {
     data: "birthday=" + birthday + "&unusual=" + unusual + "&number=" + number + "&modifier=" + modifier
   })
   .done(function(data) {
-    var startDate = dateSplitter(data[0]);
-    var endDate   = dateSplitter(data[1]);
+    if (data[0]["error"] === false) {
+      $(".birthdayError").append("<p> This is not a valid birthday. </p>");
+    } else {
+      $(".birthdayError").empty();
+      var startDate = dateSplitter(data[0]);
+      var endDate   = dateSplitter(data[1]);
 
-    $("#conceptionRange").append("You were likely conceived between " + startDate + " and " + endDate + ".");
-    getAllOTDTypes(startDate, endDate);
+      $("#conceptionRange").append("You were likely conceived between " + startDate + " and " + endDate + ".");
+      getAllOTDTypes(startDate, endDate);
+    }
   });
 }
 

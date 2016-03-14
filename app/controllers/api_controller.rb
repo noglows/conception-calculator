@@ -39,18 +39,22 @@ class ApiController < ApplicationController
           modifier = nil
         end
         birth_month, birth_day, birth_year = ApiController.helpers.date_splitter(params[:birthday])
-        birthdate = Date.new(birth_year, birth_month, birth_day)
-        conception_date = birthdate - 266
-        if number != 0
-          if modifier.downcase == "early"
-            conception_date += number
-          elsif modifier.downcase == "late"
-            conception_date -= number
+        begin
+          birthdate = Date.new(birth_year, birth_month, birth_day)
+          conception_date = birthdate - 266
+          if number != 0
+            if modifier.downcase == "early"
+              conception_date += number
+            elsif modifier.downcase == "late"
+              conception_date -= number
+            end
           end
+          start_date = conception_date - 3
+          end_date = conception_date + 3
+          render json: [start_date, end_date]
+        rescue
+          render json: ["error" => false]
         end
-        start_date = conception_date - 3
-        end_date = conception_date + 3
-        render json: [start_date, end_date]
       end
     end
   end
