@@ -59,6 +59,8 @@ gem 'aws-sdk'
 # D3 integration
 gem 'd3_rails'
 
+# emails
+gem 'rest-client'
 
 
 

@@ -49,4 +49,26 @@ class WelcomeController < ApplicationController
   def letsencrypt
     render plain: ENV['LE_AUTH_RESPONSE']
   end
+
+  def send_email
+    person = params[:person]
+    person.gsub!("\"","")
+    sender = params[:sender]
+    sender.gsub!("\"","")
+    link = params[:message]
+    link.gsub!("\"","")
+    link = "https://www.xmarksyourstart.com/#{link}"
+
+    RestClient.post "https://api:key-#{ENV["MAILGUN_API_KEY"]}"\
+    "@api.mailgun.net/v3/xmarksyourstart.com/messages",
+    :from => "X Marks Your Start <postmaster@xmarksyourstart.com>",
+    #:to => "Jessica N <jessica.noglows@outlook.com>",
+    :to => "<" + person + ">",
+    :subject => "The story of #{sender}'s conception",
+    :text => "Your good friend #{sender} wants you to know more about their conception.  Visit the below link to learn more!",
+    :html => '<html> <img width="200" height="200" src="cid:icon.png"> <br> <a href=' + link + '> X Marks Your Start </a> <br> <p> Your good friend #{sender} wants you to know more about their conception.  Visit the link to learn more! </p>',
+    :inline => File.new(File.join("public", "icon.png"))
+
+    render :json => ["Success"]
+  end
 end
