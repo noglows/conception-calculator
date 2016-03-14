@@ -93,7 +93,7 @@ function sendEmail(person, sender, message) {
     data: "person=" + person + "&sender=" + sender + "&message=" + message
   })
   .done(function(data) {
-
+    $(".error").append('<p>' + data[0]["flash"] + '</p>');
   });
 }
 

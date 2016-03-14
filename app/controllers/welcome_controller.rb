@@ -58,17 +58,23 @@ class WelcomeController < ApplicationController
     link = params[:message]
     link.gsub!("\"","")
     link = "https://www.xmarksyourstart.com/#{link}"
+    html = '<html style="font-family:helvetica"> <h1> X Marks Your Start</h1><img width="200" height="200" src="cid:map_icon.png"> <br> <p> Your good friend ' + sender + ' wants you to know more about their conception.  Visit the link to learn more! </p> <a href=' + link + '> X Marks Your Start </a> <br></html>'
 
-    RestClient.post "https://api:key-#{ENV["MAILGUN_API_KEY"]}"\
-    "@api.mailgun.net/v3/xmarksyourstart.com/messages",
-    :from => "X Marks Your Start <postmaster@xmarksyourstart.com>",
-    #:to => "Jessica N <jessica.noglows@outlook.com>",
-    :to => "<" + person + ">",
-    :subject => "The story of #{sender}'s conception",
-    :text => "Your good friend #{sender} wants you to know more about their conception.  Visit the below link to learn more!",
-    :html => '<html> <img width="200" height="200" src="cid:icon.png"> <br> <a href=' + link + '> X Marks Your Start </a> <br> <p> Your good friend ' + sender + ' wants you to know more about their conception.  Visit the link to learn more! </p>',
-    :inline => File.new(File.join("public", "icon.png"))
+    begin
+      RestClient.post "https://api:key-#{ENV["MAILGUN_API_KEY"]}"\
+      "@api.mailgun.net/v3/xmarksyourstart.com/messages",
+      :from => "X Marks Your Start <postmaster@xmarksyourstart.com>",
+      #:to => "Jessica N <jessica.noglows@outlook.com>",
+      :to => "<" + person + ">",
+      :subject => "The story of #{sender}'s conception",
+      :text => "Your good friend #{sender} wants you to know more about their conception.  Visit the below link to learn more!",
+      #:html => '<html> <img width="200" height="200" src="cid:icon.png"> <br> <a href=' + link + '> X Marks Your Start </a> <br> <p> Your good friend ' + sender + ' wants you to know more about their conception.  Visit the link to learn more! </p>',
+      :html => html,
+      :inline => File.new(File.join("public", "map_icon.png"))
+      render :json => [{"flash" => "Email successfully sent to #{person}"}]
+    rescue
+      render :json => [{"flash" => "Sorry, there's been an error."}]
+    end
 
-    render :json => ["Success"]
   end
 end
