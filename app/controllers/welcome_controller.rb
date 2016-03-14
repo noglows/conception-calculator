@@ -66,7 +66,7 @@ class WelcomeController < ApplicationController
     :to => "<" + person + ">",
     :subject => "The story of #{sender}'s conception",
     :text => "Your good friend #{sender} wants you to know more about their conception.  Visit the below link to learn more!",
-    :html => '<html> <img width="200" height="200" src="cid:icon.png"> <br> <a href=' + link + '> X Marks Your Start </a> <br> <p> Your good friend #{sender} wants you to know more about their conception.  Visit the link to learn more! </p>',
+    :html => '<html> <img width="200" height="200" src="cid:icon.png"> <br> <a href=' + link + '> X Marks Your Start </a> <br> <p> Your good friend ' + sender + ' wants you to know more about their conception.  Visit the link to learn more! </p>',
     :inline => File.new(File.join("public", "icon.png"))
 
     render :json => ["Success"]
