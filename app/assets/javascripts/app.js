@@ -27,12 +27,14 @@ function checkUrl(url) {
 }
 
 function getYoutubeId(type, search) {
+  var title = "";
+  var artist = "";
   if (type === "movie") {
-    var title = search;
-    var artist = "";
+    title = search;
+    artist = "";
   } else {
-    var title = search[0];
-    var artist = search[1];
+    title = search[0];
+    artist = search[1];
   }
   $.ajax({
     method: "GET",
