@@ -25,15 +25,6 @@ module ApiHelper
     return code
   end
 
-  # def range_method(type, start_day, end_day)
-  #   respond_to do |format|
-  #     format.json do
-  #       events = ApiController.helpers.pull_events_in_range(type, start_day, end_day)
-  #       render json: events
-  #     end
-  #   end
-  # end
-
   def get_events(events, dynamo, tableName, year, code)
     start = 0
     still_records = true
@@ -113,56 +104,15 @@ module ApiHelper
     month, day, year = ApiController.helpers.date_splitter(date)
     dynamodb = Aws::DynamoDB::Client.new
     table_name = "XMYS_#{type.capitalize}s"
-    code = year.to_s
-    if month.to_s.length < 2
-      code += "0"
-    end
-    code += month.to_s
-    if day.to_s.length < 2
-      code += "0"
-    end
-    code += day.to_s
-    if type.capitalize == "Event"
-      start = 0
-      events = []
-      still_records = true
-      while still_records == true
-        params = {
-          table_name: table_name,
-          key_condition_expression: "#yr = :yyyy and #st = :sort_key",
-          expression_attribute_names: {
-            "#yr" => "year",
-            "#st" => "sort"
-          },
-          expression_attribute_values: {
-            ":yyyy" => year.to_f,
-            ":sort_key" => code + start.to_s
-          }
-        }
-        event = dynamodb.query(params)
-        start += 1
-        if event.items == []
-          still_records = false
-        else
-          events.push(event.items)
-        end
-      end
-      return events.flatten!
+    events = []
+
+    code = ApiController.helpers.generate_data_code(year, month, day)
+
+    if type == Event || type.capitalize == "Event"
+      events = ApiController.helpers.get_events(events, dynamodb, table_name, year, code)
     else
-      params = {
-        table_name: table_name,
-        key_condition_expression: "#yr = :yyyy and #st = :sort_key",
-        expression_attribute_names: {
-          "#yr" => "year",
-          "#st" => "sort"
-        },
-        expression_attribute_values: {
-          ":yyyy" => year.to_f,
-          ":sort_key" => code
-        }
-      }
-      event = dynamodb.query(params)
-      return event
+      events = ApiController.helpers.get_movies_or_songs(events, dynamodb, table_name, year, code)
     end
+    return events.flatten!
   end
 end
