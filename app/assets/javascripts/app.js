@@ -72,6 +72,7 @@ function getAllOTDTypes(startDate, endDate) {
         } else if (data[0].artist !== undefined) {
           $("#songs").append("<p>" + data[j].title + " by " + data[j].artist + "</p>");
           //getYoutubeId("song", [data[0].title, data[0].artist]);
+
           addYoutubeVideo("song", data[0].link);
         } else {
           $("#movies").append("<p>" + data[j].title + "</p>");
