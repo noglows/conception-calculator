@@ -42,3 +42,5 @@ exclude_paths:
 - config/
 - db/
 - spec/
+- "public/assets/application-658ad0b54ea49b046d9385b1af3b90e79cf0dc212298fafc84e59d85d006e1b0.js"
+- "app/assets/javascripts/d3-timeline.js"
