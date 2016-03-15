@@ -13,6 +13,9 @@ function emptyDivs() {
   $("#about-text").hide();
   $(".data-returned").hide();
   $("#moreOptions").hide();
+  $("#emailInput").hide();
+  $("#senderInput").hide();
+  $("#emailSubmitButton").hide();
 }
 
 function checkUrl(url) {
@@ -125,6 +128,12 @@ window.requestAnimationFrame(function () {
     $(".about").click(function() {
       $("#about-text").toggle();
     });
+    $(".emailInputButton").click(function() {
+      $("#emailInput").toggle();
+      $("#senderInput").toggle();
+      $("#emailSubmitButton").toggle();
+      $(".emailInputButton").hide();
+    });
 
     $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
     $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
@@ -165,7 +174,7 @@ window.requestAnimationFrame(function () {
       $(".twitter").append(twitter_html);
 
     });
-    $("#emailInputButton").click(function() {
+    $("#emailSubmitButton").click(function() {
       var person = $("#emailInput").val();
       var sender = $("#senderInput").val();
       var output = $("#birthdayInput").val();
