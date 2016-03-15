@@ -26,27 +26,35 @@ function checkUrl(url) {
   }
 }
 
-function getYoutubeId(type, search) {
-  var title = "";
-  var artist = "";
-  if (type === "movie") {
-    title = search;
-    artist = "";
-  } else {
-    title = search[0];
-    artist = search[1];
-  }
-  $.ajax({
-    method: "GET",
-    url: "/get_youtube_id",
-    data: "title=" + title + "&type=" + type + "&artist=" + artist
-  })
-  .done(function(data) {
-    var start = '<iframe id="player" type="text/html" class="four youtube-video" src="https://www.youtube.com/embed/';
-    var end = '?enablejsapi=1&origin=https://www.xmarksyourstart.com" frameborder="0"></iframe>';
+// function getYoutubeId(type, search) {
+//   var title = "";
+//   var artist = "";
+//   if (type === "movie") {
+//     title = search;
+//     artist = "";
+//   } else {
+//     title = search[0];
+//     artist = search[1];
+//   }
+//   $.ajax({
+//     method: "GET",
+//     url: "/get_youtube_id",
+//     data: "title=" + title + "&type=" + type + "&artist=" + artist
+//   })
+//   .done(function(data) {
+//     var start = '<iframe id="player" type="text/html" class="four youtube-video" src="https://www.youtube.com/embed/';
+//     var end = '?enablejsapi=1&origin=https://www.xmarksyourstart.com" frameborder="0"></iframe>';
+//
+//     $("#" + type + "s").append(start + data + end);
+//   });
+// }
 
-    $("#" + type + "s").append(start + data + end);
-  });
+function addYoutubeVideo(type, id) {
+  var start = '<iframe id="player" type="text/html" class="four youtube-video" src="https://www.youtube.com/embed/';
+  var end = '?enablejsapi=1&origin=https://www.xmarksyourstart.com" frameborder="0"></iframe>';
+
+  $("#" + type + "s").append(start + id + end);
+
 }
 
 function getAllOTDTypes(startDate, endDate) {
@@ -63,10 +71,12 @@ function getAllOTDTypes(startDate, endDate) {
           $("#events").append("<p>" + data[j].info + "</p>");
         } else if (data[0].artist !== undefined) {
           $("#songs").append("<p>" + data[j].title + " by " + data[j].artist + "</p>");
-          getYoutubeId("song", [data[0].title, data[0].artist]);
+          //getYoutubeId("song", [data[0].title, data[0].artist]);
+          addYoutubeVideo("song", data[0].link);
         } else {
           $("#movies").append("<p>" + data[j].title + "</p>");
-          getYoutubeId("movie", data[0].title);
+          //getYoutubeId("movie", data[0].title);
+          addYoutubeVideo("movie", data[0].link);
         }
       }
     });
@@ -80,7 +90,7 @@ function getAllData(birthday, unusual, number, modifier) {
     data: "birthday=" + birthday + "&unusual=" + unusual + "&number=" + number + "&modifier=" + modifier
   })
   .done(function(data) {
-    if (data[0]["error"] === false) {
+    if (data[0].error === false) {
       $(".birthdayError").append("<p> This is not a valid birthday. </p>");
     } else {
       $(".birthdayError").empty();
@@ -100,7 +110,7 @@ function sendEmail(person, sender, message) {
     data: "person=" + person + "&sender=" + sender + "&message=" + message
   })
   .done(function(data) {
-    $(".error").append('<p>' + data[0]["flash"] + '</p>');
+    $(".error").append('<p>' + data[0].flash + '</p>');
   });
 }
 
