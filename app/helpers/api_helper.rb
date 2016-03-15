@@ -70,6 +70,15 @@ module ApiHelper
     return events
   end
 
+  def determine_event_or_song(type, events, dynamodb, table_name, year, code)
+    if type == Event || type.capitalize == "Event"
+      events = ApiController.helpers.get_events(events, dynamodb, table_name, year, code)
+    else
+      events = ApiController.helpers.get_movies_or_songs(events, dynamodb, table_name, year, code)
+    end
+    return events
+  end
+
   def pull_events_in_range(type, start_date, end_date)
     start_month, start_day, start_year = ApiController.helpers.date_splitter(start_date)
     end_month, end_day, end_year = ApiController.helpers.date_splitter(end_date)
@@ -90,12 +99,7 @@ module ApiHelper
       day = date_comp[2].to_i
 
       code = ApiController.helpers.generate_data_code(year, month, day)
-
-      if type == Event || type.capitalize == "Event"
-        events = ApiController.helpers.get_events(events, dynamodb, table_name, year, code)
-      else
-        events = ApiController.helpers.get_movies_or_songs(events, dynamodb, table_name, year, code)
-      end
+      events = ApiController.helpers.determine_event_or_song(type, events, dynamodb, table_name, year, code)
     end
     return events.flatten!
   end
@@ -107,12 +111,13 @@ module ApiHelper
     events = []
 
     code = ApiController.helpers.generate_data_code(year, month, day)
+    events = ApiController.helpers.determine_event_or_song(type, events, dynamodb, table_name, year, code)
 
-    if type == Event || type.capitalize == "Event"
-      events = ApiController.helpers.get_events(events, dynamodb, table_name, year, code)
-    else
-      events = ApiController.helpers.get_movies_or_songs(events, dynamodb, table_name, year, code)
-    end
+    # if type == Event || type.capitalize == "Event"
+    #   events = ApiController.helpers.get_events(events, dynamodb, table_name, year, code)
+    # else
+    #   events = ApiController.helpers.get_movies_or_songs(events, dynamodb, table_name, year, code)
+    # end
     return events.flatten!
   end
 end
