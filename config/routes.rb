@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/on_this_day' => 'api#on_this_day'
   get '/on_this_day_range' => 'api#on_this_day_range'
+  get '/old_movie' => 'api#get_old_movie'
 
   get '/send_email' => 'welcome#send_email'
 

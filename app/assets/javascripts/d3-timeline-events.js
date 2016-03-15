@@ -160,7 +160,6 @@ window.onload = function() {
       });
     var svg = d3.select("#timelineRelativeTime").append("svg").attr("width", width)
       .datum(testDataRelative).call(chart);
-      console.log(testDataRelative);
   }
   function timelineAxisTop() {
     var chart = d3.timeline().showAxisTop().stack();

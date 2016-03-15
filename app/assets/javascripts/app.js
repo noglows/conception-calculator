@@ -29,35 +29,23 @@ function checkUrl(url) {
   }
 }
 
-// function getYoutubeId(type, search) {
-//   var title = "";
-//   var artist = "";
-//   if (type === "movie") {
-//     title = search;
-//     artist = "";
-//   } else {
-//     title = search[0];
-//     artist = search[1];
-//   }
-//   $.ajax({
-//     method: "GET",
-//     url: "/get_youtube_id",
-//     data: "title=" + title + "&type=" + type + "&artist=" + artist
-//   })
-//   .done(function(data) {
-//     var start = '<iframe id="player" type="text/html" class="four youtube-video" src="https://www.youtube.com/embed/';
-//     var end = '?enablejsapi=1&origin=https://www.xmarksyourstart.com" frameborder="0"></iframe>';
-//
-//     $("#" + type + "s").append(start + data + end);
-//   });
-// }
-
 function addYoutubeVideo(type, id) {
   var start = '<iframe id="player" type="text/html" class="four youtube-video" src="https://www.youtube.com/embed/';
   var end = '?enablejsapi=1&origin=https://www.xmarksyourstart.com" frameborder="0"></iframe>';
 
   $("#" + type + "s").append(start + id + end);
+}
 
+function getOldMovie(year, code) {
+  $.ajax({
+    method: "GET",
+    url: "/old_movie",
+    data: "year=" + year + "&code=" + code
+  })
+  .done(function(data) {
+    $("#movies").append("<p>Sorry, there is no box office data available for the specific date of your conception. The highest grossing film of " + year + " was " + data[0][0].title + " </p>");
+    addYoutubeVideo("movie", data[0][0].link);
+  });
 }
 
 function getAllOTDTypes(startDate, endDate) {
@@ -84,6 +72,10 @@ function getAllOTDTypes(startDate, endDate) {
         }
       }
     });
+  }
+  var test = parseInt(endDate.substring(6,10));
+  if (test < 1960) {
+    getOldMovie(test, test + "0000");
   }
 }
 

@@ -59,6 +59,18 @@ class ApiController < ApplicationController
     end
   end
 
+  def get_old_movie
+    respond_to do |format|
+      format.json do
+        events = []
+        dynamo = Aws::DynamoDB::Client.new
+        tableName = "XMYS_Movies"
+        events = ApiController.helpers.get_movies_or_songs(events, dynamo, tableName, params[:year], params[:code])
+        render json: events
+      end
+    end
+  end
+
   # Want this method to take a search term and return the video id for the top result
   def get_youtube_id
     respond_to do |format|
