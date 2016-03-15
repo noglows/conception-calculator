@@ -116,7 +116,7 @@ RSpec.describe ApiController, type: :controller do
 
     it "returns the expected events for a given range" do
       get :on_this_day_range, event_range_params
-      expect(JSON.parse(response.body).length).to eq 5
+      expect(JSON.parse(response.body).length).to eq 6
     end
     it "returns the expected songs for a given range" do
       get :on_this_day_range, song_range_params

@@ -35,20 +35,5 @@ RSpec.describe WelcomeController, type: :controller do
     end
 
   end
-  #
-  # describe "GET 'all songs'" do
-  #   it "returns the all_songs page" do
-  #     get :songs
-  #     expect(subject).to render_template :songs
-  #   end
-  # end
-  #
-  # describe "GET 'all movies'" do
-  #   it "returns the all_movies page" do
-  #     get :movies
-  #     expect(subject).to render_template :movies
-  #   end
-  # end
-
 
 end
