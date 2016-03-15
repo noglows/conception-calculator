@@ -212,5 +212,11 @@ RSpec.describe ApiController, type: :controller do
     end
   end
 
+  describe "GET 'old_movie'" do
+    it "gets a movie from before 1960" do
+      get :get_old_movie, year: 1957, code: "19570000"
+      expect(JSON.parse(response.body)[0][0]["title"]).to eq "The Bridge on the River Kwai"
+    end
+  end
 
 end
