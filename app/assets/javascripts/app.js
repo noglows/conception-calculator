@@ -146,7 +146,7 @@ window.requestAnimationFrame(function () {
       var modifier = $('.success').text();
       getAllData(birthday, unusual, number, modifier);
       $(".data-returned").show();
-      var fb_a = '<a class="button" href="https://www.facebook.com/sharer/sharer.php?u=www.xmarksyourstart.com/';
+      var fb_a = '<a class="button" style="font-size: 1.5em;" href="https://www.facebook.com/sharer/sharer.php?u=www.xmarksyourstart.com/';
       var fb_b = '&p[summary]=YOUR_SUMMARY" onclick="javascript:window.open(this.href,';
       var fb_c =" ''";
       var fb_d = ", 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;";
@@ -154,7 +154,7 @@ window.requestAnimationFrame(function () {
 
       var facebook_html = fb_a + combOutput + fb_b + fb_c + fb_d + fb_e;
 
-      var tw_a = '<a class="button" href="http://twitter.com/share?text=Want%20to%20be%20grossed%20out?%20%20Check%20out%20these%20things%20that%20may%20have%20led%20to%20my%20conception.&url=http://www.xmarksyourstart.com/';
+      var tw_a = '<a class="button" style="font-size: 1.5em; href="http://twitter.com/share?text=Want%20to%20be%20grossed%20out?%20%20Check%20out%20these%20things%20that%20may%20have%20led%20to%20my%20conception.&url=http://www.xmarksyourstart.com/';
       var tw_b = '" onclick="javascript:window.open(this.href,';
       var tw_e = '" target="_blank" title="Share on Twitter">Share on Twitter</a> ';
 
