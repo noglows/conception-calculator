@@ -26,6 +26,12 @@ RSpec.describe ApiController, type: :controller do
         type: "movie"
       }
     end
+    let(:weather_params) do
+      {
+        date: "3/13/1990",
+        type: "weather"
+      }
+    end
     let(:null_song) do
       {
         date: "1/5/1986",
@@ -44,6 +50,12 @@ RSpec.describe ApiController, type: :controller do
         type: "event"
       }
     end
+    let(:null_weather) do
+      {
+        date: "5/14/1990",
+        type: "weather"
+      }
+    end
     it "returns expected event for a given day" do
       get :on_this_day, event_params, {:format => :json}
       expect(JSON.parse(response.body).length).to eql 3
@@ -56,6 +68,10 @@ RSpec.describe ApiController, type: :controller do
       get :on_this_day, movie_params, {:format => :json}
       expect(JSON.parse(response.body)[0]["title"]).to eq "Rocky IV"
     end
+    it "returns expected weather for a given day" do
+      get :on_this_day, weather_params, {:format => :json}
+      expect(JSON.parse(response.body)[0]["message"]).to eq "A tornado caused $2.5M of damage in Nebraska."
+    end
     it "handles a null movie day as expected" do
       get :on_this_day, null_movie, {:format => :json}
       expect(JSON.parse(response.body)[0]).to eq nil
@@ -66,6 +82,10 @@ RSpec.describe ApiController, type: :controller do
     end
     it "handles a null event day as expected" do
       get :on_this_day, null_event, {:format => :json}
+      expect(JSON.parse(response.body)[0]).to eq nil
+    end
+    it "handles a null weather day as expected" do
+      get :on_this_day, null_weather, {:format => :json}
       expect(JSON.parse(response.body)[0]).to eq nil
     end
   end
@@ -92,6 +112,13 @@ RSpec.describe ApiController, type: :controller do
         type: "movie"
       }
     end
+    let(:weather_range_params) do
+      {
+        start: "6/1/1990",
+        end: "7/1/1990",
+        type: "weather"
+      }
+    end
     let(:null_event_range) do
       {
         start: "1/2/1986",
@@ -113,6 +140,13 @@ RSpec.describe ApiController, type: :controller do
         type: "movie"
       }
     end
+    let(:null_weather_range) do
+      {
+        start: "1/6/1986",
+        end: "1/11/1986",
+        type: "weather"
+      }
+    end
 
     it "returns the expected events for a given range" do
       get :on_this_day_range, event_range_params
@@ -126,6 +160,10 @@ RSpec.describe ApiController, type: :controller do
       get :on_this_day_range, movie_range_params
       expect(JSON.parse(response.body).length).to eq 3
     end
+    it "returns the expected weather events for a given range" do
+      get :on_this_day_range, weather_range_params
+      expect(JSON.parse(response.body).length).to eq 11
+    end
     it "returns a null response for a range with no events" do
       get :on_this_day_range, null_event_range
       expect(JSON.parse(response.body)).to eq []
@@ -136,6 +174,10 @@ RSpec.describe ApiController, type: :controller do
     end
     it "returns a null response for a range with no events" do
       get :on_this_day_range, null_movie_range
+      expect(JSON.parse(response.body)).to eq []
+    end
+    it "returns a null response for a range with no events" do
+      get :on_this_day_range, null_weather_range
       expect(JSON.parse(response.body)).to eq []
     end
   end
