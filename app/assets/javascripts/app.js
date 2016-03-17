@@ -64,11 +64,13 @@ function getAllOTDTypes(startDate, endDate) {
           $("#events").append("<p>" + data[0].message + "</p>");
           break;
         } else if (data[0].artist !== undefined) {
-          $("#songs").append("<p>" + data[j].title + " by " + data[j].artist + "</p>");
+          $("#songs").append("<p>" + data[0].title + " by " + data[j].artist + "</p>");
           addYoutubeVideo("song", data[0].link);
+          break;
         } else {
-          $("#movies").append("<p>" + data[j].title + "</p>");
+          $("#movies").append("<p>" + data[0].title + "</p>");
           addYoutubeVideo("movie", data[0].link);
+          break;
         }
       }
     });
