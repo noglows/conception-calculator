@@ -1,7 +1,6 @@
 module ApiHelper
 
   def date_splitter(date)
-    binding.pry
     split_date = date.split("/")
     month = split_date[0].to_i
     day = split_date[1].to_i
@@ -27,7 +26,6 @@ module ApiHelper
   end
 
   def get_events(events, dynamo, tableName, year, code)
-    binding.pry
     start = 0
     still_records = true
     while still_records == true
