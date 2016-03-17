@@ -49,7 +49,7 @@ function getOldMovie(year, code) {
 }
 
 function getAllOTDTypes(startDate, endDate) {
-  var types = ["event", "song", "movie"];
+  var types = ["event", "song", "movie", "weather"];
   for(var i = 0; i < types.length; i++) {
     $.ajax({
       method: "GET",
@@ -60,14 +60,14 @@ function getAllOTDTypes(startDate, endDate) {
       for (var j = 0; j < data.length; j++) {
         if (data[0].info !== undefined) {
           $("#events").append("<p>" + data[j].info + "</p>");
+        } else if (data[0].type !== undefined) {
+          $("#events").append("<p>" + data[0].message + "</p>");
+          break;
         } else if (data[0].artist !== undefined) {
           $("#songs").append("<p>" + data[j].title + " by " + data[j].artist + "</p>");
-          //getYoutubeId("song", [data[0].title, data[0].artist]);
-
           addYoutubeVideo("song", data[0].link);
         } else {
           $("#movies").append("<p>" + data[j].title + "</p>");
-          //getYoutubeId("movie", data[0].title);
           addYoutubeVideo("movie", data[0].link);
         }
       }
@@ -154,7 +154,7 @@ window.requestAnimationFrame(function () {
 
       var facebook_html = fb_a + combOutput + fb_b + fb_c + fb_d + fb_e;
 
-      var tw_a = '<a class="button" style="font-size: 1.5em; href="http://twitter.com/share?text=Want%20to%20be%20grossed%20out?%20%20Check%20out%20these%20things%20that%20may%20have%20led%20to%20my%20conception.&url=http://www.xmarksyourstart.com/';
+      var tw_a = '<a class="button" style="font-size: 1.5em;" href="http://twitter.com/share?text=Want%20to%20be%20grossed%20out?%20%20Check%20out%20these%20things%20that%20may%20have%20led%20to%20my%20conception.&url=http://www.xmarksyourstart.com/';
       var tw_b = '" onclick="javascript:window.open(this.href,';
       var tw_e = '" target="_blank" title="Share on Twitter">Share on Twitter</a> ';
 

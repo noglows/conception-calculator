@@ -1,6 +1,7 @@
 module ApiHelper
 
   def date_splitter(date)
+    binding.pry
     split_date = date.split("/")
     month = split_date[0].to_i
     day = split_date[1].to_i
@@ -26,6 +27,7 @@ module ApiHelper
   end
 
   def get_events(events, dynamo, tableName, year, code)
+    binding.pry
     start = 0
     still_records = true
     while still_records == true
@@ -71,7 +73,7 @@ module ApiHelper
   end
 
   def determine_event_or_song(type, events, dynamodb, table_name, year, code)
-    if type == Event || type.capitalize == "Event"
+    if (type == Event) || (type.capitalize == "Event") || (type.capitalize == "Weather")
       events = ApiController.helpers.get_events(events, dynamodb, table_name, year, code)
     else
       events = ApiController.helpers.get_movies_or_songs(events, dynamodb, table_name, year, code)
@@ -88,7 +90,11 @@ module ApiHelper
     date_range = ApiController.helpers.create_range(start_date, end_date)
 
     dynamodb = Aws::DynamoDB::Client.new
-    table_name = "XMYS_#{type.capitalize}s"
+    if type != "weather"
+      table_name = "XMYS_#{type.capitalize}s"
+    else
+      table_name = "XMYS_Weather"
+    end
 
     events = []
     date_range.each do |date|
@@ -107,17 +113,15 @@ module ApiHelper
   def single_day_event(type, date)
     month, day, year = ApiController.helpers.date_splitter(date)
     dynamodb = Aws::DynamoDB::Client.new
-    table_name = "XMYS_#{type.capitalize}s"
+    if type != "weather"
+      table_name = "XMYS_#{type.capitalize}s"
+    else
+      table_name = "XMYS_Weather"
+    end
     events = []
 
     code = ApiController.helpers.generate_data_code(year, month, day)
     events = ApiController.helpers.determine_event_or_song(type, events, dynamodb, table_name, year, code)
-
-    # if type == Event || type.capitalize == "Event"
-    #   events = ApiController.helpers.get_events(events, dynamodb, table_name, year, code)
-    # else
-    #   events = ApiController.helpers.get_movies_or_songs(events, dynamodb, table_name, year, code)
-    # end
     return events.flatten!
   end
 end
