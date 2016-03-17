@@ -23,10 +23,6 @@ Rails.application.routes.draw do
 
   get '/get_youtube_id' => 'api#get_youtube_id'
 
-  get '/test_filter' => 'api#test_filter'
-
-  get '/test' => 'welcome#test'
-  get '/test2' => 'welcome#event_timeline'
   get '/:id' => 'welcome#user_page'
 
 
