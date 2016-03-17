@@ -26,7 +26,7 @@
 }
 
 img {
-  height: 200px;
+  height: 180px;
   width: 800px;
   margin-bottom: 30px;
 }
@@ -39,8 +39,12 @@ img {
   font-size: 1.5em;
 }
 
-button {
+.button {
   font-size: 1.5em;
+}
+
+.home-button {
+  margin-top: 20px;
 }
 
 .visuallyhidden {
