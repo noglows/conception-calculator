@@ -28,7 +28,7 @@
 img {
   height: 200px;
   width: 800px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .birthday-input {
@@ -64,6 +64,11 @@ button {
   color: red;
 }
 
+p {
+   font-size: 1.1em;
+ }
+
+
 /*Social Sharing*/
 
 .twitter {
@@ -77,6 +82,11 @@ button {
 .email {
   text-align: center;
 }
+
+.top {
+  margin-top: 100px;
+}
+
 
 
 /*About Section*/
@@ -115,6 +125,14 @@ button {
 }
 
 
+/*User Page*/
+
+.homelink {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 
 
  /*body {
@@ -125,20 +143,12 @@ button {
    color: #222;
  }
 
- .homelink {
-   margin-left: auto;
-   margin-right: auto;
- }
 
 
- .value-props {
-   margin-top: 4rem;
-   margin-bottom: 3rem;
- }
 
-p {
-   font-size: 1.2em;
- }
+
+
+
 
 
 
@@ -151,10 +161,6 @@ p {
  }
 
 
-
-.youtube-video {
-  width: 100%;
-}
 
 */
 
