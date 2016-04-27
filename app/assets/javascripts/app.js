@@ -19,7 +19,7 @@ function emptyDivs() {
 }
 
 function checkUrl(url) {
-  url = url.replace("http://localhost:3002/", "");
+  url = url.replace("http://localhost:3000/", "");
   url = url.replace("http://www.xmarksyourstart.com/", "");
   url = url.replace("https://www.xmarksyourstart.com/", "");
   if (url === ""){
@@ -88,6 +88,7 @@ function getAllData(birthday, unusual, number, modifier) {
     data: "birthday=" + birthday + "&unusual=" + unusual + "&number=" + number + "&modifier=" + modifier
   })
   .done(function(data) {
+    console.log("In here")
     if (data[0].error === false) {
       $(".birthdayError").append("<p> This is not a valid birthday. </p>");
     } else {
