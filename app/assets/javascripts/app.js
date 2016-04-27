@@ -22,6 +22,8 @@ function checkUrl(url) {
   url = url.replace("http://localhost:3000/", "");
   url = url.replace("http://www.xmarksyourstart.com/", "");
   url = url.replace("https://www.xmarksyourstart.com/", "");
+  url = url.replace("https://xmarksyourstart.com/", "");
+  url = url.replace("http://xmarksyourstart.com/", "");
   if (url === ""){
     return true;
   } else {
