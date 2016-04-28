@@ -59,22 +59,29 @@ function getAllOTDTypes(startDate, endDate) {
       data: "start=" + startDate + "&end=" + endDate + "&type=" + types[i]
     })
     .done(function(data) {
+      var type;
       for (var j = 0; j < data.length; j++) {
         if (data[0].info !== undefined) {
+          type = $("#events");
           $("#events").append("<p>" + data[j].info + "</p>");
         } else if (data[0].type !== undefined) {
+          type = $("#events");
           $("#events").append("<p>" + data[0].message + "</p>");
           break;
         } else if (data[0].artist !== undefined) {
+          type = $("#songs");
           $("#songs").append("<p>" + data[0].title + " by " + data[j].artist + "</p>");
           addYoutubeVideo("song", data[0].link);
           break;
         } else {
+          type = $("#movies");
           $("#movies").append("<p>" + data[0].title + "</p>");
           addYoutubeVideo("movie", data[0].link);
           break;
         }
       }
+      type.append("<br><br>");
+
     });
   }
   var test = parseInt(endDate.substring(6,10));

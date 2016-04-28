@@ -20,25 +20,40 @@
 
 body {
   font-family: "Raleway", sans-serif;
+  font-size: 20px;
 }
 
 .title {
   font-family: 'Pirata One', cursive;
   text-align: center;
-  font-size: 8em;
+  font-size: 60px;
+
 }
 
 .jumbotron {
     margin-bottom: 0px;
     background-image: url(../images/xmarksnew.jpeg);
-    background-position: 0% 75%;
+    background-position: 0% 60%;
     background-size: cover;
     background-repeat: no-repeat;
     color: black;
+    height: 250px;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 40px;
 }
 
 .labelText {
-  font-size: 1.5em;
+  font-size: 40px;
+}
+
+.btn {
+  font-size: 30px;
 }
 
 .birthdayError {
@@ -48,4 +63,8 @@ body {
 
 .about:hover {
   color: blue;
+}
+
+.about {
+  font-size: 30px;
 }
