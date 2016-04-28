@@ -70,47 +70,57 @@
     <h4 class="text-center labelText" id="conceptionRange"></h4>
 
     <div class="value-props row text-center">
-      <div class="col-xs-4 value-prop">
+      <div class="col-md-4 value-prop">
+
         <%= fa_icon "calendar-times-o 4x" %>
         <h3>Events</h3>
+
+        <div class="value-prop">
+          <p id="events"></p>
+        </div>
+
       </div>
-      <div class="col-xs-4 value-prop">
+      <div class="col-md-4 value-prop">
+
         <%= fa_icon "headphones 4x" %>
         <h3>Songs</h3>
+
+        <div class="value-prop">
+          <p id="songs"></p>
+        </div>
+
       </div>
-      <div class="col-xs-4 value-prop">
+      <div class="value-prop">
+
         <%= fa_icon "film 4x" %>
         <h3>Movies</h3>
+
+        <div class="value-prop">
+          <p id="movies"></p>
+        </div>
+
       </div>
     </div>
 
-    <div class="value-props row">
-
-      <div class="col-xs-4 value-prop">
-        <p id="events"></p>
-      </div>
-
-      <div class="col-xs-4 value-prop">
-        <p id="songs"></p>
-      </div>
-
-      <div class="col-xs-4 value-prop">
-        <p id="movies"></p>
-      </div>
-    </div>
   </section>
 
+  <br>
+  <br>
+
   <section class="data-returned">
-    <div class="row share top">
-      <div class="six columns value-prop facebook"></div>
-      <div class="six columns value-prop twitter"></div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 text-center value-prop facebook"></div>
     </div>
-    <div class="row share">
-      <div class="twelve columns value-prop email">
+    <br>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 text-center value-prop twitter"></div>
+    </div>
+    <div class="row">
+      <div class="text-center value-prop email">
         <input class="four" type="email" placeholder="Enter a friends email" id="emailInput"> <br>
         <input class="four" type="email" placeholder="Enter your name" id="senderInput"> <br>
-        <button class="emailInputButton button">Share Over Email</button>
-        <button id="emailSubmitButton">Submit</button>
+        <button class="emailInputButton btn btn-default">Share Over Email</button>
+        <button id="emailSubmitButton" class="btn btn-default">Submit</button>
       </div>
     </div>
     <div class="value-props row">
@@ -120,19 +130,13 @@
   </section>
   <hr>
 
-  <div class="spacer"></div>
-  <nav class="navbar">
-    <div class="container">
-      <ul class="navbar-list">
-        <li class="navbar-item">
-          <a class="navbar-link about">About</a>
-         </li>
-         <p id="about-text">
-           X Marks Your Start was developed by Jessica Noglows for her Ada Developers Academy capstone project.  The app is built in Ruby on Rails and leverages a DynamoDB database for data storage, Travis for deployment, and a variety of other technologies.
-         </p>
-      </ul>
-    </div>
-  </nav>
+
+  <h3 class="about">About</h3>
+  <p id="about-text">
+    X Marks Your Start was developed by Jessica Noglows for her Ada Developers Academy capstone project.  The app is built in Ruby on Rails and leverages a DynamoDB database for data storage, Travis for deployment, and a variety of other technologies.
+  </p>
+
+
   <hr>
 
 </div>
