@@ -199,6 +199,9 @@ window.requestAnimationFrame(function () {
     var number = 0;
     var modifier = "early";
     getAllData(birthday, unusual, number, modifier);
+    $("#conceptionRange_user").append("Your friend was born on " + birthday + ".");
+    $("#conceptionRange_user").append("<br><br>" + "Here's what was going on in the world the week they were conceived:");
+    $("#conceptionRange_user").append('<hr>');
   }
 
 });
