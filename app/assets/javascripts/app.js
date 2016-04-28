@@ -12,7 +12,7 @@ function emptyDivs() {
   $("#conceptionRange").empty();
   $("#about-text").hide();
   $(".data-returned").hide();
-  $("#moreOptions").hide();
+  //$("#moreOptions").hide();
   $("#emailInput").hide();
   $("#senderInput").hide();
   $("#emailSubmitButton").hide();
@@ -119,6 +119,7 @@ function sendEmail(person, sender, message) {
 
 window.requestAnimationFrame(function () {
   var response = checkUrl(window.location.href);
+  $("#moreOptions").hide();
   if (response === true) {
     emptyDivs();
     $("#checkUnusual").click(function() {

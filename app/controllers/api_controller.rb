@@ -28,7 +28,6 @@ class ApiController < ApplicationController
   end
 
   def conception_range
-    binding.pry
     respond_to do |format|
       format.json do
         if params[:unusual] == "true"
