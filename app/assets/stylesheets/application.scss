@@ -37,13 +37,6 @@ body {
     color: black;
 }
 
-
-// .visuallyhidden {
-//     clip: rect(0 0 0 0);
-//     padding: 0;
-//     position: absolute;
-// }
-
 .labelText {
   font-size: 1.5em;
 }
@@ -51,4 +44,8 @@ body {
 .birthdayError {
   font-size: 1.5em;
   color: red;
+}
+
+.about:hover {
+  color: blue;
 }

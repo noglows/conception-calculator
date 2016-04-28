@@ -3,106 +3,103 @@
 </div>
 
 <div class="container">
-  <section class="header">
-    <!-- <%= image_tag "new_logo_2.png", class: "img-responsive" %> -->
 
-    <br>
-    <br>
-    <h1 class="text-center">Enter your birthday</h1>
+  <br>
+  <br>
+  <h1 class="text-center">Enter your birthday</h1>
 
-    <div class="row">
-      <div class="input-group date col-xs-4 col-xs-offset-4" data-provide="datepicker" placeholder="MM/DD/YYY">
-        <input type="text" id="birthdayInput" class="form-control">
-        <div class="input-group-addon">
-            <span class="glyphicon glyphicon-th"></span>
-        </div>
+  <div class="row">
+    <div class="input-group date col-xs-4 col-xs-offset-4" data-provide="datepicker" placeholder="MM/DD/YYY">
+      <input type="text" id="birthdayInput" class="form-control">
+      <div class="input-group-addon">
+          <span class="glyphicon glyphicon-th"></span>
       </div>
     </div>
+  </div>
 
-    <br>
+  <br>
 
-    <div class="row">
-      <div class="col-xs-6 col-xs-offset-3 text-center">
-        <fieldset id="checkArray">
-          <label class="">
-          <input type="checkbox" value="unusual" name="check[]" id="checkUnusual">
-          <span class="labelText">I was born early or late</span>
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3 text-center">
+      <fieldset id="checkArray">
+        <label class="">
+        <input type="checkbox" value="unusual" name="check[]" id="checkUnusual">
+        <span class="labelText">I was born early or late</span>
+        </label>
+      </fieldset>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <div id="moreOptions">
+        <div class="toggle-btn-grp text-center">
+          <h3 class="text-center">I was born </h3>
+          <input class="four" type="number" placeholder="" id="actualBirthInput">
+          <h3> weeks: </h3>
+          <label onclick="" class="toggle-btn btn labelText label-body">
+            <input type="radio" id="early" name="group2"/>
+            Early
           </label>
-        </fieldset>
-      </div>
-    </div>
-
-    <br>
-
-    <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
-        <div id="moreOptions">
-          <div class="toggle-btn-grp text-center">
-            <h3 class="text-center">I was born </h3>
-            <input class="four" type="number" placeholder="" id="actualBirthInput">
-            <h3> weeks: </h3>
-            <label onclick="" class="toggle-btn btn labelText label-body">
-              <input type="radio" id="early" name="group2"/>
-              Early
-            </label>
-            <label onclick="" class="toggle-btn btn labelText label-body">
-              <input type="radio" id="late" name="group2"/>
-              Late
-            </label>
-          </div>
+          <label onclick="" class="toggle-btn btn labelText label-body">
+            <input type="radio" id="late" name="group2"/>
+            Late
+          </label>
         </div>
       </div>
     </div>
+  </div>
 
-    <br>
+  <br>
 
-    <div class="row">
-      <button id="birthdayInputButton" class="btn btn-default center-block">Submit</button>
+  <div class="row">
+    <button id="birthdayInputButton" class="btn btn-default center-block">Submit</button>
 
-      <div class="birthdayError"></div>
-    </div>
+    <div class="birthdayError"></div>
+  </div>
 
-    <br>
+  <br>
 
 
-    <hr>
+  <hr>
 
-    <h4 class="text-center labelText" id="conceptionRange"></h4>
+  <h4 class="text-center labelText" id="conceptionRange"></h4>
 
-    <div class="value-props row text-center">
-      <div class="col-md-4 value-prop">
+  <div class="value-props row text-center">
+    <div class="col-md-4 value-prop">
 
-        <%= fa_icon "calendar-times-o 4x" %>
-        <h3>Events</h3>
+      <%= fa_icon "calendar-times-o 4x", title: "Historical events from the week of your conception" %>
+      <h3>Events</h3>
 
-        <div class="value-prop">
-          <p id="events"></p>
-        </div>
-
-      </div>
-      <div class="col-md-4 value-prop">
-
-        <%= fa_icon "headphones 4x" %>
-        <h3>Songs</h3>
-
-        <div class="value-prop">
-          <p id="songs"></p>
-        </div>
-
-      </div>
       <div class="value-prop">
-
-        <%= fa_icon "film 4x" %>
-        <h3>Movies</h3>
-
-        <div class="value-prop">
-          <p id="movies"></p>
-        </div>
-
+        <p id="events"></p>
       </div>
-    </div>
 
-  </section>
+    </div>
+    <div class="col-md-4 value-prop">
+
+      <%= fa_icon "headphones 4x", title: "The top song from the week of your conception" %>
+      <h3>Songs</h3>
+
+      <div class="value-prop">
+        <p id="songs"></p>
+      </div>
+
+    </div>
+    <div class="value-prop">
+
+      <%= fa_icon "film 4x", title: "The top box office film from the week of your conception" %>
+      <h3>Movies</h3>
+
+      <div class="value-prop">
+        <p id="movies"></p>
+      </div>
+
+    </div>
+  </div>
+
 
   <br>
   <br>
@@ -133,7 +130,7 @@
 
   <h3 class="about">About</h3>
   <p id="about-text">
-    X Marks Your Start was developed by Jessica Noglows for her Ada Developers Academy capstone project.  The app is built in Ruby on Rails and leverages a DynamoDB database for data storage, Travis for deployment, and a variety of other technologies.
+    X Marks Your Start was developed by <a href="https://www.linkedin.com/in/jessicanoglows">Jessica Noglows</a> for her Ada Developers Academy capstone project.  The site leverages the DayPI API (also developed by Jessica - soon to be released for public use) to serve up events, movies, and songs for a particular date. The app is built in Ruby on Rails and leverages a DynamoDB database for data storage, Travis for deployment, and a variety of other technologies.
   </p>
 
 

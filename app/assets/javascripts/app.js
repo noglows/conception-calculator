@@ -132,23 +132,6 @@ window.requestAnimationFrame(function () {
       $(".emailInputButton").hide();
     });
 
-    // $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
-    // $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
-    //   if( $(this).attr("name") ) {
-    //       $(this).parent().addClass("success").siblings().removeClass("success");
-    //   } else {
-    //       $(this).parent().toggleClass("success");
-    //   }
-    // });
-    //$(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
-    //$(".toggle-btn:not('.noscript') input[type=radio]").addClass("btn");
-    // $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
-    //   if( $(this).attr("name") ) {
-    //       $(this).parent().addClass("btn-danger").siblings().removeClass("btn-danger");
-    //   } else {
-    //       $(this).parent().toggleClass("btn-danger");
-    //   }
-    // });
     $("#birthdayInputButton").click(function() {
       emptyDivs();
       var output = $("#birthdayInput").val();
@@ -198,4 +181,5 @@ window.requestAnimationFrame(function () {
     var modifier = "early";
     getAllData(birthday, unusual, number, modifier);
   }
+
 });
