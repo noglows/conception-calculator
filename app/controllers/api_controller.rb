@@ -28,12 +28,13 @@ class ApiController < ApplicationController
   end
 
   def conception_range
+    binding.pry
     respond_to do |format|
       format.json do
         if params[:unusual] == "true"
           number = params[:number].to_i
           number = number * 7
-          modifier = params[:modifier].strip!
+          modifier = params[:modifier].strip.downcase
         else
           number = 0
           modifier = nil
