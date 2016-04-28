@@ -33,7 +33,7 @@ class ApiController < ApplicationController
         if params[:unusual] == "true"
           number = params[:number].to_i
           number = number * 7
-          modifier = params[:modifier]
+          modifier = params[:modifier].strip!
         else
           number = 0
           modifier = nil
