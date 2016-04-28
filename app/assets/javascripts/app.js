@@ -98,6 +98,7 @@ function getAllData(birthday, unusual, number, modifier) {
       var endDate   = dateSplitter(data[1]);
 
       $("#conceptionRange").append("You were likely conceived between " + startDate + " and " + endDate + ".");
+      $("#conceptionRange").append("<br><br>" + "Here's what was going on in the world the week you were conceived:");
       $("#conceptionRange").append('<hr>');
       getAllOTDTypes(startDate, endDate);
     }
