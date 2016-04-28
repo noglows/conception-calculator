@@ -4,41 +4,52 @@
 <meta property="og:description"   content="Find out what influenced your conception" />
 <meta property="og:image" content = "http://failedmessiah.typepad.com/.a/6a00d83451b71f69e20168ebc80e7c970c-800wi" />
 
+<div class="jumbotron">
+  <h1 class="title">X Marks Your Start</h1>
+</div>
+<br>
+<br>
+
 <div class="container">
-  <section class="header">
-    <%= image_tag "new_logo_2.png" %>
-    <h4 id="conceptionRange_user"></h4>
 
-    <div class="value-props row">
-      <div class="four columns value-prop">
-        <%= fa_icon "calendar-times-o 4x" %>
-        <h3>Events</h3>
-      </div>
-      <div class="four columns value-prop">
-        <%= fa_icon "headphones 4x" %>
-        <h3>Songs</h3>
-      </div>
-      <div class="four columns value-prop">
-        <%= fa_icon "film 4x" %>
-        <h3>Movies</h3>
-      </div>
-    </div>
-    <div class="value-props row">
+  <h4 id="conceptionRange_user"></h4>
 
-      <div class="four columns value-prop">
+  <div class="value-props row text-center">
+    <div class="col-md-4 value-prop">
+
+      <%= fa_icon "calendar-times-o 4x", title: "Historical events from the week of your conception" %>
+      <h3>Events</h3>
+
+      <div class="value-prop">
         <p id="events"></p>
       </div>
 
-      <div class="four columns value-prop">
+    </div>
+    <div class="col-md-4 value-prop">
+
+      <%= fa_icon "headphones 4x", title: "The top song from the week of your conception" %>
+      <h3>Songs</h3>
+
+      <div class="value-prop">
         <p id="songs"></p>
       </div>
 
-      <div class="four columns value-prop">
+    </div>
+    <div class="value-prop">
+
+      <%= fa_icon "film 4x", title: "The top box office film from the week of your conception" %>
+      <h3>Movies</h3>
+
+      <div class="value-prop">
         <p id="movies"></p>
       </div>
-    </div>
 
-    <a class="button home-button" href="https://www.xmarksyourstart.com">Find out about your own conception</a>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <a class="btn btn-default" href="https://www.xmarksyourstart.com">Find out about your own conception</a>
   </section>
   <hr>
 </div>
