@@ -90,7 +90,6 @@ function getAllData(birthday, unusual, number, modifier) {
     data: "birthday=" + birthday + "&unusual=" + unusual + "&number=" + number + "&modifier=" + modifier
   })
   .done(function(data) {
-    console.log("In here")
     if (data[0].error === false) {
       $(".birthdayError").append("<p> This is not a valid birthday. </p>");
     } else {
@@ -144,9 +143,10 @@ window.requestAnimationFrame(function () {
     $("#birthdayInputButton").click(function() {
       emptyDivs();
       var output = $("#birthdayInput").val();
-      var birthday = dateSplitter(output);
-      var splitOutput = output.split("-");
-      var combOutput = splitOutput[0] + splitOutput[1] + splitOutput[2];
+      //var birthday = dateSplitter(output);
+      var birthday = output;
+      var splitOutput = output.split("/");
+      var combOutput = splitOutput[2] + splitOutput[0] + splitOutput[1];
       var unusual = ($("#checkUnusual:checkbox:checked").length > 0);
       var number = $('#actualBirthInput').val();
       var modifier = $('.success').text();
@@ -166,8 +166,6 @@ window.requestAnimationFrame(function () {
 
       var twitter_html = tw_a + combOutput + tw_b + fb_c + fb_d + tw_e;
 
-      //var twitter_html = '<a target="_blank" href="http://twitter.com/share?text=Want%20to%20be%20grossed%20out?%20%20Check%20out%20these%20things%20that%20may%20have%20led%20to%20my%20conception.&url=http://www.xmarksyourstart.com/'+ comb_output +'">Share This on Twitter</a>';
-
       $(".facebook").append(facebook_html);
       $(".twitter").append(twitter_html);
 
@@ -185,6 +183,7 @@ window.requestAnimationFrame(function () {
     var year = response.substring(0,4);
     var month = response.substring(4,6);
     var day = response.substring(6,8);
+    console.log(year)
     var birthday = month + "/" + day + "/" + year;
     var unusual = false;
     var number = 0;

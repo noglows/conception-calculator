@@ -11,10 +11,11 @@
 // about supported directives.
 
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
-//= require jquery_ujs
+//= require bootstrap-datepicker
 //= require turbolinks
 //= require d3
 //= require d3-timeline
 //= require d3-timeline-events
-//= require_tree
+//= require_tree .

@@ -1,9 +1,16 @@
 <div class="container">
   <section class="header">
-    <%= image_tag "new_logo_2.png" %>
-    <h2>Enter your birthday</h2>
-    
-    <input class="four birthday-input" type="date" placeholder="" id="birthdayInput"> <br>
+    <%= image_tag "new_logo_2.png", class: "img-responsive" %>
+
+    <h2 class="text-center">Enter your birthday</h2>
+
+    <!-- <input class="four birthday-input" type="date" placeholder="" id="birthdayInput"> <br> -->
+    <div class="input-group date col-md-4 col-md-offset-4" data-provide="datepicker" placeholder="MM/DD/YYY">
+      <input type="text" id="birthdayInput" class="form-control">
+      <div class="input-group-addon">
+          <span class="glyphicon glyphicon-th"></span>
+      </div>
+    </div>
 
     <fieldset id="checkArray">
       <label class="">
@@ -23,7 +30,7 @@
     </div>
 
     <br>
-    <button id="birthdayInputButton">Submit</button>
+    <button id="birthdayInputButton" class="btn btn-default">Submit</button>
 
     <div class="birthdayError"></div>
 

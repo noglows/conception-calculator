@@ -7,6 +7,7 @@ gem 'rails', '4.2.5.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -36,32 +37,21 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Project related
 gem 'httparty'
 gem 'typhoeus'
-# gem 'omniauth'
-# gem 'omniauth-facebook'
-# gem 'omniauth-twitter'
-#gem 'mongoid', '~> 5.1.0'
-gem 'bootstrap-sass'
-gem 'skeleton-rails'#, github: 'helios-technologies/skeleton-rails'
+
+gem 'bootstrap-datepicker-rails'
+#gem 'skeleton-rails'#, github: 'helios-technologies/skeleton-rails'
 gem 'font-awesome-rails'
-# Facebook
-# gem "koala", "~> 2.2"
-# gem 'social-share-button'
-# Attempt to fix certificate issue
-# gem 'certified', '~> 1.0'
+
 
 # DynamoDB
 gem 'dynamoid', '~> 1'
 gem 'aws-sdk'
-
-# AWS
-#gem 'unicorn'
 
 # D3 integration
 gem 'd3_rails'
 
 # emails
 gem 'rest-client'
-
 
 
 group :development, :test do
