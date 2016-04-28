@@ -1,38 +1,69 @@
+<div class="jumbotron">
+  <h1 class="title">X Marks Your Start</h1>
+</div>
+
 <div class="container">
   <section class="header">
-    <%= image_tag "new_logo_2.png", class: "img-responsive" %>
+    <!-- <%= image_tag "new_logo_2.png", class: "img-responsive" %> -->
 
-    <h2 class="text-center">Enter your birthday</h2>
+    <br>
+    <br>
+    <h1 class="text-center">Enter your birthday</h1>
 
-    <!-- <input class="four birthday-input" type="date" placeholder="" id="birthdayInput"> <br> -->
-    <div class="input-group date col-md-4 col-md-offset-4" data-provide="datepicker" placeholder="MM/DD/YYY">
-      <input type="text" id="birthdayInput" class="form-control">
-      <div class="input-group-addon">
-          <span class="glyphicon glyphicon-th"></span>
-      </div>
-    </div>
-
-    <fieldset id="checkArray">
-      <label class="">
-      <input type="checkbox" value="unusual" name="check[]" id="checkUnusual">
-      <span class="label-body">I was born early or late</span>
-      </label>
-    </fieldset>
-
-    <div id="moreOptions">
-      <div class="toggle-btn-grp">
-        <h5>I was born </h5>
-        <input class="four" type="number" placeholder="" id="actualBirthInput">
-        <h5> weeks: </h5>
-        <label onclick="" class="toggle-btn button label-body"><input type="radio" id="early" name="group2"/>Early</label>
-        <label onclick="" class="toggle-btn button label-body"><input type="radio" id="late" name="group2"/>Late</label>
+    <div class="row">
+      <div class="input-group date col-xs-4 col-xs-offset-4" data-provide="datepicker" placeholder="MM/DD/YYY">
+        <input type="text" id="birthdayInput" class="form-control">
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+        </div>
       </div>
     </div>
 
     <br>
-    <button id="birthdayInputButton" class="btn btn-default">Submit</button>
 
-    <div class="birthdayError"></div>
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3 text-center">
+        <fieldset id="checkArray">
+          <label class="">
+          <input type="checkbox" value="unusual" name="check[]" id="checkUnusual">
+          <span class="labelText">I was born early or late</span>
+          </label>
+        </fieldset>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <div id="moreOptions">
+          <div class="toggle-btn-grp text-center">
+            <h3 class="text-center">I was born </h3>
+            <input class="four" type="number" placeholder="" id="actualBirthInput">
+            <h3> weeks: </h3>
+            <label onclick="" class="toggle-btn btn labelText label-body">
+              <input type="radio" id="early" name="group2"/>
+              Early
+            </label>
+            <label onclick="" class="toggle-btn btn labelText label-body">
+              <input type="radio" id="late" name="group2"/>
+              Late
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <button id="birthdayInputButton" class="btn btn-default center-block">Submit</button>
+
+      <div class="birthdayError"></div>
+    </div>
+
+    <br>
+
 
     <hr>
 

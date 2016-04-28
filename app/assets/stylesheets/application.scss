@@ -21,3 +21,34 @@
 body {
   font-family: "Raleway", sans-serif;
 }
+
+.title {
+  font-family: 'Pirata One', cursive;
+  text-align: center;
+  font-size: 8em;
+}
+
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url(../images/xmarksnew.jpeg);
+    background-position: 0% 75%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: black;
+}
+
+
+// .visuallyhidden {
+//     clip: rect(0 0 0 0);
+//     padding: 0;
+//     position: absolute;
+// }
+
+.labelText {
+  font-size: 1.5em;
+}
+
+.birthdayError {
+  font-size: 1.5em;
+  color: red;
+}

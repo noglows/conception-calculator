@@ -132,14 +132,23 @@ window.requestAnimationFrame(function () {
       $(".emailInputButton").hide();
     });
 
-    $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
-    $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
-      if( $(this).attr("name") ) {
-          $(this).parent().addClass("success").siblings().removeClass("success");
-      } else {
-          $(this).parent().toggleClass("success");
-      }
-    });
+    // $(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
+    // $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
+    //   if( $(this).attr("name") ) {
+    //       $(this).parent().addClass("success").siblings().removeClass("success");
+    //   } else {
+    //       $(this).parent().toggleClass("success");
+    //   }
+    // });
+    //$(".toggle-btn:not('.noscript') input[type=radio]").addClass("visuallyhidden");
+    //$(".toggle-btn:not('.noscript') input[type=radio]").addClass("btn");
+    // $(".toggle-btn:not('.noscript') input[type=radio]").change(function() {
+    //   if( $(this).attr("name") ) {
+    //       $(this).parent().addClass("btn-danger").siblings().removeClass("btn-danger");
+    //   } else {
+    //       $(this).parent().toggleClass("btn-danger");
+    //   }
+    // });
     $("#birthdayInputButton").click(function() {
       emptyDivs();
       var output = $("#birthdayInput").val();
@@ -183,7 +192,6 @@ window.requestAnimationFrame(function () {
     var year = response.substring(0,4);
     var month = response.substring(4,6);
     var day = response.substring(6,8);
-    console.log(year)
     var birthday = month + "/" + day + "/" + year;
     var unusual = false;
     var number = 0;
