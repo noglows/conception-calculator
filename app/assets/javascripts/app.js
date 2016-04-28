@@ -111,7 +111,9 @@ function sendEmail(person, sender, message) {
     data: "person=" + person + "&sender=" + sender + "&message=" + message
   })
   .done(function(data) {
-    $(".error").append('<p>' + data[0].flash + '</p>');
+    $(".error").append('<p class="text-center">' + data[0].flash + '</p>');
+    $("#emailInput").val("");
+    $("#senderInput").val("");
   });
 }
 

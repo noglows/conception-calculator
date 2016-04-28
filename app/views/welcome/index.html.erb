@@ -106,20 +106,24 @@
 
   <section class="data-returned">
     <div class="row">
-      <div class="col-md-4 col-md-offset-4 text-center value-prop facebook"></div>
+      <div class="col-md-4 col-md-offset-4 text-center btn-group">
+        <div class="pull-left value-prop facebook"></div>
+        <div class="pull-right value-prop twitter"></div>
+      </div>
     </div>
-    <br>
+
     <div class="row">
-      <div class="col-md-4 col-md-offset-4 text-center value-prop twitter"></div>
-    </div>
-    <div class="row">
-      <div class="text-center value-prop email">
-        <input class="four" type="email" placeholder="Enter a friends email" id="emailInput"> <br>
-        <input class="four" type="email" placeholder="Enter your name" id="senderInput"> <br>
+      <div class="text-center value-prop email col-md-4 col-md-offset-4">
+        <br>
+        <br>
+        <input class="form-control" type="email" placeholder="Enter a friends email" id="emailInput"> <br>
+        <input class="form-control" type="text" placeholder="Enter your name" id="senderInput"> <br>
         <button class="emailInputButton btn btn-default">Share Over Email</button>
+        <br>
         <button id="emailSubmitButton" class="btn btn-default">Submit</button>
       </div>
     </div>
+    <br>
     <div class="value-props row">
       <div class="error">
       </div>
