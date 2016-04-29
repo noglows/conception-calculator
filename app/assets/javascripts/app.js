@@ -185,8 +185,8 @@ window.requestAnimationFrame(function () {
       var person = $("#emailInput").val();
       var sender = $("#senderInput").val();
       var output = $("#birthdayInput").val();
-      var splitOutput = output.split("-");
-      var combOutput = splitOutput[0] + splitOutput[1] + splitOutput[2];
+      var splitOutput = output.split("/");
+      var combOutput = splitOutput[2] + splitOutput[0] + splitOutput[1];
       sendEmail(person, sender, combOutput);
     });
 
